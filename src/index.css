@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ── Custom theme tokens (Tailwind v4 CSS-first) ── */
 @theme {
@@ -11,12 +12,12 @@
   --color-text-secondary: #888888;
   --color-text-muted: #555555;
 
-  --color-phase-purple: #BD00FF;
-  --color-phase-deep-purple: #8E44AD;
-  --color-phase-blue: #2E86C1;
-  --color-phase-orange: #FF5C00;
+  --color-phase-purple: #0EA5E9;
+  --color-phase-deep-purple: #2563EB;
+  --color-phase-blue: #1E40AF;
+  --color-phase-orange: #06B6D4;
 
-  --color-accent: #BD00FF;
+  --color-accent: #0EA5E9;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -34,27 +35,39 @@ html {
 
 body {
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
+
+/* ── Dark / Light transitions ── */
+.dark body { background-color: #020202; color: #f0f0f0; }
+.light body { background-color: #f5f5f7; color: #1a1a1a; }
 
 /* ── Custom utilities ── */
 .glow-purple {
-  box-shadow: 0 0 20px rgba(189, 0, 255, 0.15), 0 0 60px rgba(189, 0, 255, 0.05);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.15), 0 0 60px rgba(14, 165, 233, 0.05);
 }
 
 .glow-deep-purple {
-  box-shadow: 0 0 20px rgba(142, 68, 173, 0.15), 0 0 60px rgba(142, 68, 173, 0.05);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.15), 0 0 60px rgba(37, 99, 235, 0.05);
 }
 
 .glow-blue {
-  box-shadow: 0 0 20px rgba(46, 134, 193, 0.15), 0 0 60px rgba(46, 134, 193, 0.05);
+  box-shadow: 0 0 20px rgba(30, 64, 175, 0.15), 0 0 60px rgba(30, 64, 175, 0.05);
 }
 
 .glow-orange {
-  box-shadow: 0 0 20px rgba(255, 92, 0, 0.15), 0 0 60px rgba(255, 92, 0, 0.05);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), 0 0 60px rgba(6, 182, 212, 0.05);
 }
 
-.text-gradient-hero {
-  background: linear-gradient(135deg, #ffffff 0%, #BD00FF 50%, #FF5C00 100%);
+.text-gradient-hero-dark {
+  background: linear-gradient(135deg, #ffffff 0%, #0EA5E9 50%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-hero-light {
+  background: linear-gradient(135deg, #0f172a 0%, #0EA5E9 50%, #2563EB 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -78,7 +91,7 @@ body {
   border-radius: 2px;
 }
 
-/* ── Keyframes for subtle pulse ── */
+/* ── Keyframes ── */
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
@@ -88,7 +101,26 @@ body {
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
-/* ── Grid noise overlay ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ── Grid noise overlay (dark only) ── */
 .noise-overlay::before {
   content: "";
   position: fixed;
@@ -97,4 +129,8 @@ body {
   pointer-events: none;
   opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.light .noise-overlay::before {
+  opacity: 0;
 }

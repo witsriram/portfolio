@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80">
+  <!-- Diving figure -->
+  <circle cx="145" cy="12" r="5" fill="#0082C3"/>
+  <!-- Body -->
+  <path d="M140 17 Q130 30, 155 25" stroke="#0082C3" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Arms reaching forward -->
+  <path d="M155 25 L180 15" stroke="#0082C3" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M155 25 L178 20" stroke="#0082C3" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Legs -->
+  <path d="M135 25 L125 18" stroke="#0082C3" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M135 25 L128 15" stroke="#0082C3" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Horizontal line -->
+  <line x1="10" y1="45" x2="210" y2="45" stroke="#0082C3" stroke-width="2"/>
+  <!-- Text -->
+  <text x="10" y="70" font-family="Arial, sans-serif" font-weight="bold" font-size="26" fill="#0082C3">AkzoNobel</text>
+</svg>

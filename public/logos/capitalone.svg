@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 55">
+  <!-- Blue swoosh (back layer) -->
+  <path d="M82 18 C100 4, 140 0, 175 8 C180 9, 185 12, 182 15 C178 18, 170 14, 160 12 C140 8, 110 10, 90 20" fill="#004977" opacity="0.7"/>
+  <!-- Red swoosh (front layer) -->
+  <path d="M78 20 C95 6, 135 1, 170 10 C175 12, 178 15, 174 17 C170 19, 162 15, 152 13 C135 9, 108 12, 88 22" fill="#D12124"/>
+  <!-- Capital text -->
+  <text x="8" y="42" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="22" fill="#004977">Capital</text>
+  <!-- One text -->
+  <text x="108" y="42" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="22" fill="#D12124">One</text>
+</svg>

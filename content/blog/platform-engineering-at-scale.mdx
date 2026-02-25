@@ -1,0 +1,87 @@
+---
+title: "Platform Engineering at Massive Scale: Lessons from 250+ Sites"
+date: "2026-01-28"
+tags: ["Platform Engineering", "DevOps", "5G Core"]
+excerpt: "What I learned building and operating undercloud infrastructure for AT&T's 5G Core network — from greenfield deployments to brownfield migrations."
+wordCount: 900
+---
+
+## The Scale Problem
+
+Deploying infrastructure to 5 sites is a project. Deploying to 250+ sites across a country is a **platform problem**.
+
+When I joined the undercloud team, our deployment pipeline was a mix of scripts, runbooks, and tribal knowledge. It worked for the first 20 sites. By site 50, cracks were showing. By site 100, it was clear we needed a fundamentally different approach.
+
+### Greenfield vs Brownfield
+
+Not all sites are created equal:
+
+- **Greenfield** — Fresh hardware, clean network, no existing workloads. You control everything.
+- **Brownfield** — Existing infrastructure, running services, legacy configurations. You have to coexist.
+
+We needed a platform that handled both without separate codepaths.
+
+### The Platform Architecture
+
+Our solution was a layered architecture:
+
+```
+┌────────────────────────────────────┐
+│         Platform API (CRDs)        │  ← Declarative intent
+├────────────────────────────────────┤
+│      Deployment Controller (Go)    │  ← Reconciliation engine
+├────────────────────────────────────┤
+│     Site Profile Engine (Chef)     │  ← Configuration management
+├────────────────────────────────────┤
+│    Hardware Abstraction Layer       │  ← IPMI, Redfish, PXE
+├────────────────────────────────────┤
+│         Bare Metal (Servers)       │  ← Dell, HP, Supermicro
+└────────────────────────────────────┘
+```
+
+Each layer had a single responsibility and communicated through well-defined interfaces.
+
+### Key Decisions That Paid Off
+
+**1. Immutable Infrastructure**
+
+Instead of patching servers in place, we rebuilt them. Every deployment was a fresh OS install, fresh Kubernetes cluster, fresh workload deployment. This eliminated configuration drift entirely.
+
+**2. GitOps for Everything**
+
+Every site's desired state lived in Git. A change to a site's configuration was a pull request. Review, approve, merge, and the platform reconciled automatically.
+
+**3. Progressive Rollouts**
+
+We never deployed to all 250 sites at once. Our rollout strategy:
+
+- **Canary** → 1 lab site
+- **Early Access** → 5 production sites across different regions
+- **General Availability** → Remaining sites in waves of 20
+
+**4. Observability from Day 1**
+
+Every deployment published metrics to DataDog and Splunk:
+- Time to provision
+- Component health checks
+- Configuration drift detection
+- Rollback triggers
+
+### The Numbers
+
+After 18 months of building and iterating:
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Site deployment time | 4+ hours | 25 minutes |
+| Deployment success rate | ~70% | 98.5% |
+| Mean time to recovery | 2 hours | 12 minutes |
+| Team size required | 5 engineers | 2 engineers |
+
+### What I'd Do Differently
+
+1. **Invest in testing infrastructure earlier** — We built our test framework at site 80. Should have been site 5.
+2. **Standardize hardware profiles sooner** — Hardware variance was our biggest source of bugs.
+3. **Build the platform team as a product team** — Treat internal teams as customers. Run sprint demos, collect feedback, iterate.
+
+Platform engineering at scale isn't about any single technology. It's about **building systems that let humans focus on decisions, not repetition**.
