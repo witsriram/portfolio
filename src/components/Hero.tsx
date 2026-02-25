@@ -18,7 +18,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden px-6 pt-16 pb-24"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-16 pb-24 sm:min-h-[70vh]"
     >
       {/* Animated gradient orbs */}
       <div className="pointer-events-none absolute inset-0">
@@ -125,7 +125,8 @@ export default function Hero() {
           <span className="font-medium text-[#0EA5E9]">Azure Arc</span>,{" "}
           <span className="font-medium text-[#0EA5E9]">KAITO</span>,{" "}
           <span className={`font-medium ${isDark ? "text-white" : "text-black"}`}>model quantization</span>, and a{" "}
-          <a href="https://gpt.witsriram.com" target="_blank" rel="noopener noreferrer" className="font-medium text-[#0EA5E9] underline-offset-4 hover:underline">private GPT via Ollama</a>.
+private GPT via Ollama (linked to{" "}
+          <a href="https://gpt.witsriram.com" target="_blank" rel="noopener noreferrer" className="font-medium text-[#0EA5E9] underline underline-offset-4 decoration-[#0EA5E9]/50 hover:decoration-[#0EA5E9]">gpt.witsriram.com</a>).
         </motion.p>
 
         {/* CTA row */}

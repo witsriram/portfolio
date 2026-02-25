@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 
 export default function Footer() {
@@ -51,15 +51,7 @@ export default function Footer() {
             <Mail size={14} className="text-[#0EA5E9]" />
             sri@witsriram.com
           </a>
-          <a
-            href="tel:+16239995550"
-            className={`flex items-center gap-2 text-sm transition-colors ${
-              isDark ? "text-[#888] hover:text-white" : "text-[#666] hover:text-black"
-            }`}
-          >
-            <Phone size={14} className="text-[#0EA5E9]" />
-            (623) 999-5550
-          </a>
+
         </motion.div>
 
         {/* Social icons */}
@@ -74,7 +66,6 @@ export default function Footer() {
             { icon: Github, href: "https://github.com/witsriram", label: "GitHub" },
             { icon: Linkedin, href: "https://linkedin.com/in/witsriram", label: "LinkedIn" },
             { icon: Mail, href: "mailto:sri@witsriram.com", label: "Email" },
-            { icon: Phone, href: "tel:+16239995550", label: "Phone" },
           ].map(({ icon: Icon, href, label }) => (
             <a
               key={label}
