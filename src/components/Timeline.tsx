@@ -15,13 +15,14 @@ interface Milestone {
   date: string;
   afterPhaseIndex: number;         // render after this phase card (0-based)
   type?: "job" | "education";
+  side?: "left" | "right";
 }
 
 const milestones: Milestone[] = [
-  { label: "Joined LTM (then Mindtree)", date: "Feb 2013", afterPhaseIndex: 3, type: "job" },
-  { label: "Joined Wipro",              date: "Oct 2010", afterPhaseIndex: 4, type: "job" },
-  { label: "Master's in Computer Science — with Distinction", date: "May 2010", afterPhaseIndex: 4, type: "education" },
-  { label: "Bachelors in Computer Science — with Distinction", date: "May 2008", afterPhaseIndex: 5, type: "education" },
+  { label: "Joined LTM (then Mindtree)", date: "Feb 2013", afterPhaseIndex: 3, type: "job", side: "right" },
+  { label: "Joined Wipro",              date: "Oct 2010", afterPhaseIndex: 4, type: "job", side: "right" },
+  { label: "Master's in Computer Science — with Distinction", date: "May 2010", afterPhaseIndex: 4, type: "education", side: "left" },
+  { label: "Bachelors in Computer Science — with Distinction", date: "May 2008", afterPhaseIndex: 5, type: "education", side: "left" },
 ];
 
 function MilestoneDot({ milestone }: { milestone: Milestone }) {
@@ -32,15 +33,16 @@ function MilestoneDot({ milestone }: { milestone: Milestone }) {
   const isEducation = milestone.type === "education";
   const color = isEducation ? "#8B5CF6" : "#0EA5E9";
   const Icon = isEducation ? GraduationCap : Briefcase;
+  const isLeft = milestone.side === "left";
 
   return (
-    <div ref={ref} className="relative flex w-full items-center justify-center py-1">
+    <div ref={ref} className="relative flex w-full flex-col items-center justify-center py-3 sm:flex-row sm:py-1">
       {/* Center dot */}
       <motion.div
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : { scale: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="absolute left-1/2 z-20 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border-2"
+        className="absolute left-1/2 z-20 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border-2 sm:top-1/2 sm:-translate-y-1/2"
         style={{
           borderColor: color,
           backgroundColor: isInView ? color : isDark ? "#020202" : "#f5f5f7",
@@ -52,19 +54,23 @@ function MilestoneDot({ milestone }: { milestone: Milestone }) {
         <Icon size={12} className="text-white" />
       </motion.div>
 
-      {/* Label pill — always on the right for consistency */}
+      {/* Label pill — below dot on mobile, left or right of dot on sm+ */}
       <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className={`absolute left-[calc(50%+22px)] z-20 flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-medium backdrop-blur-sm ${
+        className={`relative z-20 mt-10 flex flex-col items-center gap-0.5 rounded-full border px-3 py-1 text-[11px] font-medium backdrop-blur-sm sm:absolute sm:mt-0 sm:flex-row sm:gap-2 ${
+          isLeft
+            ? "sm:right-[calc(50%+22px)] sm:left-auto"
+            : "sm:left-[calc(50%+22px)]"
+        } ${
           isDark
             ? "bg-[#0a0a0a]/90"
             : "bg-white/90 shadow-sm"
         }`}
         style={{ borderColor: color + "33", color }}
       >
-        <span className="font-semibold">{milestone.label}</span>
+        <span className="font-semibold text-center sm:text-left">{milestone.label}</span>
         <span className={`font-mono text-[10px] ${isDark ? "text-[#555]" : "text-[#999]"}`}>
           {milestone.date}
         </span>
@@ -306,7 +312,7 @@ export default function Timeline({
               {milestones
                 .filter((m) => m.afterPhaseIndex === i)
                 .map((m, mi) => (
-                  <div key={m.label} className={mi > 0 ? "mt-6" : "mt-3"}>
+                  <div key={m.label} className={mi > 0 ? "mt-14 sm:mt-6" : "mt-3"}>
                     <MilestoneDot milestone={m} />
                   </div>
                 ))}
