@@ -93,7 +93,7 @@ function getBlipPosition(
 export default function TechRadar() {
   const [hovered, setHovered] = useState<RadarBlip | null>(null);
   const [activeQuadrant, setActiveQuadrant] = useState<number | null>(null);
-  const size = 520;
+  const size = 380;
   const center = size / 2;
 
   // Group blips by quadrant+ring for deterministic indexing
@@ -122,14 +122,14 @@ export default function TechRadar() {
       : positioned;
 
   return (
-    <section className="relative mx-auto max-w-6xl px-6 py-10">
+    <section className="relative mx-auto max-w-6xl px-6 py-6">
       {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mb-10 text-center"
+        className="mb-6 text-center"
       >
         <p className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#14B8A6]">
           Technology Choices
@@ -147,7 +147,7 @@ export default function TechRadar() {
       </motion.div>
 
       {/* Quadrant filter pills */}
-      <div className="mb-8 flex flex-wrap justify-center gap-2">
+      <div className="mb-4 flex flex-wrap justify-center gap-2">
         <button
           onClick={() => setActiveQuadrant(null)}
           className={`rounded-full border px-3 py-1 text-[11px] font-medium transition-all duration-200 ${
@@ -324,7 +324,7 @@ export default function TechRadar() {
       </div>
 
       {/* Legend */}
-      <div className="mt-10 flex flex-wrap justify-center gap-6">
+      <div className="mt-6 flex flex-wrap justify-center gap-6">
         {(["adopt", "trial", "assess"] as Ring[]).map((ring) => (
           <div key={ring} className="flex items-center gap-2">
             <div

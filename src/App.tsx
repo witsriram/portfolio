@@ -3,12 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import ParticleField from "./components/ParticleField";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Clients from "./components/Clients";
 import Timeline from "./components/Timeline";
 import BentoGrid from "./components/BentoGrid";
 import TechRadar from "./components/TechRadar";
 import StatsCounter from "./components/StatsCounter";
-import NowPlaying from "./components/NowPlaying";
+
 import SlideOut from "./components/SlideOut";
 import Passions from "./components/Passions";
 import Footer from "./components/Footer";
@@ -30,12 +29,11 @@ function Home() {
       <Header />
       <Hero />
       <StatsCounter />
-      <Clients />
       <Timeline phases={careerPhases} onSelectPhase={setSelectedPhase} />
       <BentoGrid techMatrix={techMatrix} />
       <TechRadar />
       <Passions />
-      <NowPlaying />
+
       <Footer />
       <SlideOut phase={selectedPhase} onClose={() => setSelectedPhase(null)} />
     </div>

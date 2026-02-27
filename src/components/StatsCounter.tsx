@@ -1,176 +1,147 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import {
-  Globe,
-  Container,
-  Rocket,
-  Clock,
-  Cloud,
-  Server,
-} from "lucide-react";
+import { Globe, Container, Rocket, Clock, Cloud, Server } from "lucide-react";
 
-interface Stat {
-  label: string;
-  value: number;
-  suffix: string;
-  icon: typeof Globe;
-  description: string;
-}
-
-const stats: Stat[] = [
-  {
-    label: "Years of Experience",
-    value: 16,
-    suffix: "+",
-    icon: Clock,
-    description: "Infrastructure, DevOps & AI",
-  },
-  {
-    label: "Cloud Regions",
-    value: 60,
-    suffix: "+",
-    icon: Globe,
-    description: "Azure & AWS globally",
-  },
-  {
-    label: "Bare-Metal Sites",
-    value: 250,
-    suffix: "+",
-    icon: Server,
-    description: "Deployed via Airship",
-  },
-  {
-    label: "K8s Clusters",
-    value: 500,
-    suffix: "+",
-    icon: Container,
-    description: "Managed & orchestrated",
-  },
-  {
-    label: "CI/CD Pipelines",
-    value: 200,
-    suffix: "+",
-    icon: Rocket,
-    description: "Automated deployments",
-  },
-  {
-    label: "Cloud Services",
-    value: 30,
-    suffix: "+",
-    icon: Cloud,
-    description: "Azure PaaS & IaaS",
-  },
+/* ── Data ── */
+const stats = [
+  { label: "Years",       value: 16,  suffix: "+", icon: Clock },
+  { label: "Cloud Regions",value: 60, suffix: "+", icon: Globe },
+  { label: "Bare-Metal",  value: 250, suffix: "+", icon: Server },
+  { label: "K8s Clusters", value: 500, suffix: "+", icon: Container },
+  { label: "CI/CD Pipes", value: 200, suffix: "+", icon: Rocket },
+  { label: "Cloud Svcs",  value: 30,  suffix: "+", icon: Cloud },
 ];
 
-/* ── Animated number that counts up ── */
-function AnimatedNumber({
-  target,
-  suffix,
-  inView,
-}: {
-  target: number;
-  suffix: string;
-  inView: boolean;
-}) {
-  const [current, setCurrent] = useState(0);
+const clients = [
+  { name: "Microsoft",  logo: "/logos/microsoft.svg",       accent: "#00A4EF" },
+  { name: "Intel",      logo: "/logos/intel.svg",           accent: "#0071C5" },
+  { name: "KPN",        logo: "/logos/kpn-logo.svg",        accent: "#00A540" },
+  { name: "Capital One", logo: "/logos/capital-one-logo.svg",accent: "#D03027" },
+  { name: "AkzoNobel",  logo: "/logos/logo-akzonobel.webp", accent: "#FF6200" },
+  { name: "Amex GBT",   logo: "/logos/amexgbt.svg",         accent: "#006FCF" },
+];
 
+/* ── Animated counter ── */
+function Counter({ target, suffix, run }: { target: number; suffix: string; run: boolean }) {
+  const [n, setN] = useState(0);
   useEffect(() => {
-    if (!inView) return;
-    let frame: number;
-    const duration = 2000; // ms
-    const start = performance.now();
-
+    if (!run) return;
+    let raf: number;
+    const dur = 1800, t0 = performance.now();
     const tick = (now: number) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCurrent(Math.round(eased * target));
-      if (progress < 1) frame = requestAnimationFrame(tick);
+      const p = Math.min((now - t0) / dur, 1);
+      setN(Math.round((1 - Math.pow(1 - p, 3)) * target));
+      if (p < 1) raf = requestAnimationFrame(tick);
     };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [inView, target]);
-
-  return (
-    <span>
-      {current.toLocaleString()}
-      {suffix}
-    </span>
-  );
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [run, target]);
+  return <>{n.toLocaleString()}{suffix}</>;
 }
 
+/* ── Component ── */
 export default function StatsCounter() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section className="relative mx-auto max-w-6xl px-6 py-10">
-      {/* Heading */}
+    <section ref={ref} className="mx-auto max-w-6xl px-6 py-6">
+      {/* Section heading — matches other sections */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mb-12 text-center"
+        transition={{ duration: 0.4 }}
+        className="mb-6 text-center"
       >
         <p className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#14B8A6]">
           By the Numbers
         </p>
-        <h2
-          className="text-3xl font-bold sm:text-4xl text-white"
-        >
+        <h2 className="text-3xl font-bold sm:text-4xl text-white">
           Impact at Scale
         </h2>
+        <p className="mt-2 flex items-center justify-center gap-1.5 text-sm text-[#9a9488]">
+          Delivered for{" "}
+          <img src="/logos/LTM-Logo.svg" alt="LTIMindtree" className="inline h-4 sm:h-5" />
+          &nbsp;&amp;&nbsp;
+          <img src="/logos/wipro_new_logo.svg" alt="Wipro" className="inline h-6 sm:h-7" style={{ filter: "brightness(2.5)" }} />
+        </p>
       </motion.div>
 
-      {/* Stats grid */}
-      <div
-        ref={ref}
-        className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6"
-      >
-        {stats.map((stat, i) => {
-          const Icon = stat.icon;
-          return (
+      {/* 4-col grid: [stat][stat][logo][logo] × 3 rows */}
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {[0, 1, 2].map((row) => {
+          const s1 = stats[row * 2];
+          const s2 = stats[row * 2 + 1];
+          const c1 = clients[row * 2];
+          const c2 = clients[row * 2 + 1];
+          const Icon1 = s1.icon;
+          const Icon2 = s2.icon;
+          const delay = row * 0.12;
+
+          return [
+            /* Stat 1 */
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              key={s1.label}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="group relative overflow-hidden rounded-2xl border p-5 text-center transition-all duration-300 border-[#262420] bg-[#12110F]/80 hover:border-[#332F2A] hover:shadow-[0_0_30px_rgba(20,184,166,0.06)]"
+              transition={{ duration: 0.25, delay }}
+              className="group flex flex-col items-center rounded-lg border border-[#1e1d1a] bg-[#12110F]/70 py-2.5 px-1 text-center transition-colors hover:border-[#2a2824]"
             >
-              {/* Subtle glow on hover */}
-              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.06)_0%,transparent_70%)]" />
-              </div>
+              <Icon1 size={13} className="mb-1 text-[#14B8A6]" />
+              <p className="text-lg font-bold tabular-nums leading-tight text-white">
+                <Counter target={s1.value} suffix={s1.suffix} run={inView} />
+              </p>
+              <p className="mt-0.5 text-[7px] font-semibold uppercase tracking-wider text-[#7a756c]">
+                {s1.label}
+              </p>
+            </motion.div>,
 
-              <Icon
-                size={20}
-                className="relative mx-auto mb-3 text-[#14B8A6]"
-              />
-              <p
-                className="relative text-2xl font-bold tabular-nums sm:text-3xl text-white"
-              >
-                <AnimatedNumber
-                  target={stat.value}
-                  suffix={stat.suffix}
-                  inView={inView}
-                />
+            /* Stat 2 */
+            <motion.div
+              key={s2.label}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.25, delay: delay + 0.03 }}
+              className="group flex flex-col items-center rounded-lg border border-[#1e1d1a] bg-[#12110F]/70 py-2.5 px-1 text-center transition-colors hover:border-[#2a2824]"
+            >
+              <Icon2 size={13} className="mb-1 text-[#14B8A6]" />
+              <p className="text-lg font-bold tabular-nums leading-tight text-white">
+                <Counter target={s2.value} suffix={s2.suffix} run={inView} />
               </p>
-              <p
-                className="relative mt-1 text-[11px] font-semibold uppercase tracking-wider text-[#9a9488]"
-              >
-                {stat.label}
+              <p className="mt-0.5 text-[7px] font-semibold uppercase tracking-wider text-[#7a756c]">
+                {s2.label}
               </p>
-              <p
-                className="relative mt-0.5 text-[10px] text-[#5c574e]"
-              >
-                {stat.description}
-              </p>
-            </motion.div>
-          );
+            </motion.div>,
+
+            /* Logo 1 */
+            <motion.div
+              key={c1.name}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.25, delay: delay + 0.06 }}
+              className="group flex flex-col items-center justify-center rounded-lg border border-[#1e1d1a] bg-[#12110F]/70 py-2.5 px-1 text-center transition-colors hover:border-[#2a2824]"
+              whileHover={{ boxShadow: `0 0 16px ${c1.accent}12` }}
+            >
+              <img src={c1.logo} alt={c1.name} className="h-9 w-16 object-contain opacity-80 brightness-150 transition-opacity group-hover:opacity-100" />
+            </motion.div>,
+
+            /* Logo 2 */
+            <motion.div
+              key={c2.name}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.25, delay: delay + 0.09 }}
+              className="group flex flex-col items-center justify-center rounded-lg border border-[#1e1d1a] bg-[#12110F]/70 py-2.5 px-1 text-center transition-colors hover:border-[#2a2824]"
+              whileHover={{ boxShadow: `0 0 16px ${c2.accent}12` }}
+            >
+              <img src={c2.logo} alt={c2.name} className="h-9 w-16 object-contain opacity-80 brightness-150 transition-opacity group-hover:opacity-100" />
+            </motion.div>,
+          ];
         })}
       </div>
     </section>
