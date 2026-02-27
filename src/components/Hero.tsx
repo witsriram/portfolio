@@ -1,12 +1,9 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, Terminal } from "lucide-react";
-import { useTheme } from "./ThemeContext";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -18,8 +15,26 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-16 pb-24 sm:min-h-[70vh]"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-16 pb-10 sm:min-h-[70vh]"
     >
+      {/* Full-bleed background photo */}
+      <div className="pointer-events-none absolute inset-0">
+        <img
+          src="/photos/northenlights-AI-1.JPEG"
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ opacity: 0.25 }}
+        />
+        {/* Radial vignette so text area stays readable */}
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(13,12,10,0.6)_0%,transparent_70%)]"
+        />
+        {/* Bottom gradient fade to page bg */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0D0C0A] to-transparent"
+        />
+      </div>
+
       {/* Animated gradient orbs */}
       <div className="pointer-events-none absolute inset-0">
         <motion.div
@@ -29,11 +44,7 @@ export default function Hero() {
             y: [0, -20, 0],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className={`absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl ${
-            isDark
-              ? "bg-[radial-gradient(circle,rgba(20,184,166,0.07)_0%,transparent_70%)]"
-              : "bg-[radial-gradient(circle,rgba(20,184,166,0.08)_0%,transparent_70%)]"
-          }`}
+          className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl bg-[radial-gradient(circle,rgba(20,184,166,0.07)_0%,transparent_70%)]"
         />
         <motion.div
           animate={{
@@ -42,11 +53,7 @@ export default function Hero() {
             y: [0, 15, 0],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className={`absolute right-1/4 top-1/3 h-[400px] w-[400px] rounded-full blur-3xl ${
-            isDark
-              ? "bg-[radial-gradient(circle,rgba(217,119,6,0.04)_0%,transparent_70%)]"
-              : "bg-[radial-gradient(circle,rgba(217,119,6,0.05)_0%,transparent_70%)]"
-          }`}
+          className="absolute right-1/4 top-1/3 h-[400px] w-[400px] rounded-full blur-3xl bg-[radial-gradient(circle,rgba(217,119,6,0.04)_0%,transparent_70%)]"
         />
         <motion.div
           animate={{
@@ -54,11 +61,7 @@ export default function Hero() {
             x: [0, 20, 0],
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className={`absolute bottom-1/4 left-1/4 h-[300px] w-[300px] rounded-full blur-3xl ${
-            isDark
-              ? "bg-[radial-gradient(circle,rgba(13,148,136,0.04)_0%,transparent_70%)]"
-              : "bg-[radial-gradient(circle,rgba(13,148,136,0.05)_0%,transparent_70%)]"
-          }`}
+          className="absolute bottom-1/4 left-1/4 h-[300px] w-[300px] rounded-full blur-3xl bg-[radial-gradient(circle,rgba(13,148,136,0.04)_0%,transparent_70%)]"
         />
       </div>
 
@@ -71,11 +74,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className={`flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium backdrop-blur-sm ${
-            isDark
-              ? "border-[#262420] bg-[#12110F]/80 text-[#9a9488]"
-              : "border-[#ddd] bg-white/80 text-[#666] shadow-sm"
-          }`}
+          className="flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium backdrop-blur-sm border-[#262420] bg-[#12110F]/80 text-[#9a9488]"
         >
           <Terminal size={12} className="text-[#14B8A6]" />
           <span className="font-mono">
@@ -89,9 +88,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35 }}
-          className={`text-5xl font-black tracking-tight sm:text-7xl lg:text-8xl ${
-            isDark ? "text-gradient-hero-dark" : "text-gradient-hero-light"
-          }`}
+          className="text-5xl font-black tracking-tight sm:text-7xl lg:text-8xl text-gradient-hero-dark"
         >
           Sriram Rajendran
         </motion.h1>
@@ -101,32 +98,27 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className={`max-w-2xl text-sm font-light leading-relaxed sm:text-base ${
-            isDark ? "text-[#9a9488]" : "text-[#666]"
-          }`}
+          className="max-w-2xl text-sm font-light leading-relaxed sm:text-base text-[#c4bfb6]"
         >
-          16 years across{" "}
-          <span className={`font-medium ${isDark ? "text-[#e8e4de]" : "text-black"}`}>IaC, Config Management, CI/CD, and Platform Engineering</span> — built a product{" "}
-          (<span className="font-medium text-[#14B8A6]">D-Engine</span>), then scaled{" "}
-          <span className={`font-medium ${isDark ? "text-[#e8e4de]" : "text-black"}`}>Undercloud deployments</span> across 250+ sites via{" "}
-          <span className="font-medium text-[#14B8A6]">K8s &amp; Airship</span> for the largest telecom provider in North America.{" "}
-          Enterprise delivery at scale, product-builder at heart.
+          I turn infrastructure into code and complexity into platforms.{" "}
+          Over <span className="font-medium text-white">16 years</span>, I&apos;ve{" "}
+          built <span className="font-medium text-[#5EEAD4]">D-Engine</span> — an internal IP that abstracts multi-cloud provisioning — and{" "}
+          shipped <span className="font-medium text-white">Undercloud at scale</span>: 250+ sites,{" "}
+          <span className="font-medium text-[#5EEAD4]">Kubernetes &amp; Airship</span>, powering North America&apos;s largest telecom network.{" "}
+          Product-builder by instinct, platform engineer by trade.
         </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.65 }}
-          className={`max-w-2xl text-sm font-light leading-relaxed sm:text-base ${
-            isDark ? "text-[#9a9488]" : "text-[#666]"
-          }`}
+          className="max-w-2xl text-sm font-light leading-relaxed sm:text-base text-[#c4bfb6]"
         >
-          Personal lab:{" "}
-          <span className="font-medium text-[#14B8A6]">Azure Arc</span>,{" "}
-          <span className="font-medium text-[#14B8A6]">KAITO</span>,{" "}
-          <span className={`font-medium ${isDark ? "text-[#e8e4de]" : "text-black"}`}>model quantization</span>, and a{" "}
-private GPT via Ollama (linked to{" "}
-          <a href="https://gpt.witsriram.com" target="_blank" rel="noopener noreferrer" className="font-medium text-[#14B8A6] underline underline-offset-4 decoration-[#14B8A6]/50 hover:decoration-[#14B8A6]">gpt.witsriram.com</a>).
+          After hours, I run a home lab —{" "}
+          <span className="font-medium text-[#5EEAD4]">Azure Arc</span>,{" "}
+          <span className="font-medium text-[#5EEAD4]">KAITO</span>,{" "}
+          <span className="font-medium text-white">quantized models</span>, and a self-hosted GPT at{" "}
+          <a href="https://gpt.witsriram.com" target="_blank" rel="noopener noreferrer" className="font-medium text-[#5EEAD4] underline underline-offset-4 decoration-[#5EEAD4]/50 hover:decoration-[#5EEAD4]">gpt.witsriram.com</a>.
         </motion.p>
 
         {/* CTA row */}
@@ -145,32 +137,10 @@ private GPT via Ollama (linked to{" "}
           </a>
           <a
             href="#skills"
-            className={`rounded-full border px-6 py-2.5 text-sm font-medium transition-all duration-300 ${
-              isDark
-                ? "border-[#262420] bg-[#12110F] text-[#c4bfb6] hover:border-[#332F2A] hover:text-[#e8e4de]"
-                : "border-[#ddd] bg-white text-[#666] shadow-sm hover:border-[#bbb] hover:text-black"
-            }`}
+            className="rounded-full border px-6 py-2.5 text-sm font-medium transition-all duration-300 border-[#262420] bg-[#12110F] text-[#c4bfb6] hover:border-[#332F2A] hover:text-[#e8e4de]"
           >
             Tech Stack
           </a>
-        </motion.div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-10 flex flex-col items-center gap-2"
-      >
-        <span className={`text-[10px] font-medium uppercase tracking-[3px] ${isDark ? "text-[#5c574e]" : "text-[#aaa]"}`}>
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-        >
-          <ChevronDown size={16} className={isDark ? "text-[#5c574e]" : "text-[#aaa]"} />
         </motion.div>
       </motion.div>
     </section>

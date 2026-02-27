@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import type { TechCategory } from "../data/career";
-import { useTheme } from "./ThemeContext";
 
 /* ── Tech Category Card ── */
 function TechCard({
@@ -13,9 +12,6 @@ function TechCard({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   const Icon = category.icon;
 
   return (
@@ -29,11 +25,7 @@ function TechCard({
         damping: 25,
         delay: index * 0.06,
       }}
-      className={`group rounded-2xl border p-5 transition-all duration-300 ${
-        isDark
-          ? "border-[#262420] bg-[#12110F]/80 hover:border-[#332F2A]"
-          : "border-[#e0e0e0] bg-white/80 shadow-sm hover:border-[#ccc]"
-      }`}
+      className="group rounded-2xl border p-5 transition-all duration-300 border-[#262420] bg-[#12110F]/80 hover:border-[#332F2A]"
     >
       <div className="mb-4 flex items-center gap-3">
         <div
@@ -42,18 +34,14 @@ function TechCard({
         >
           <Icon size={16} style={{ color: category.color }} />
         </div>
-        <h4 className={`text-sm font-semibold ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}>{category.category}</h4>
+        <h4 className="text-sm font-semibold text-[#e8e4de]">{category.category}</h4>
       </div>
 
       <div className="flex flex-wrap gap-1.5">
         {category.items.map((item) => (
           <span
             key={item}
-            className={`rounded-md border px-2.5 py-1 font-mono text-[11px] transition-colors duration-200 ${
-              isDark
-                ? "border-[#262420] bg-[#1A1816] text-[#9a9488] hover:border-[#332F2A] hover:text-[#e8e4de]"
-                : "border-[#e0e0e0] bg-[#f0f0f0] text-[#666] hover:border-[#bbb] hover:text-black"
-            }`}
+            className="rounded-md border px-2.5 py-1 font-mono text-[11px] transition-colors duration-200 border-[#262420] bg-[#1A1816] text-[#9a9488] hover:border-[#332F2A] hover:text-[#e8e4de]"
           >
             {item}
           </span>
@@ -69,11 +57,8 @@ export default function BentoGrid({
 }: {
   techMatrix: TechCategory[];
 }) {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
-    <section id="skills" className="relative pt-4 pb-8">
+    <section id="skills" className="relative pt-2 pb-4">
       <div className="mx-auto max-w-6xl px-6">
         {/* Section heading */}
         <div className="mb-16 text-center">
@@ -91,7 +76,7 @@ export default function BentoGrid({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className={`text-3xl font-bold sm:text-4xl ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}
+            className="text-3xl font-bold sm:text-4xl text-[#e8e4de]"
           >
             The Full Technology Matrix
           </motion.h2>

@@ -1,13 +1,10 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
-import { useTheme } from "./ThemeContext";
 
 export default function Footer() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
 
   return (
-    <footer className={`relative border-t pt-4 pb-12 ${isDark ? "border-[#1A1816]" : "border-[#e0e0e0]"}`}>
+    <footer className="relative border-t pt-4 pb-12 border-[#1A1816]">
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute bottom-0 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(20,184,166,0.04)_0%,transparent_70%)]" />
@@ -19,7 +16,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={`font-mono text-xs uppercase tracking-[4px] ${isDark ? "text-[#3d3a35]" : "text-[#aaa]"}`}
+          className="font-mono text-xs uppercase tracking-[4px] text-[#3d3a35]"
         >
           Let&apos;s Build the Future
         </motion.p>
@@ -29,7 +26,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className={`text-2xl font-bold sm:text-3xl ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}
+          className="text-2xl font-bold sm:text-3xl text-[#e8e4de]"
         >
           Sriram Rajendran
         </motion.h3>
@@ -44,9 +41,7 @@ export default function Footer() {
         >
           <a
             href="mailto:sri@witsriram.com"
-            className={`flex items-center gap-2 text-sm transition-colors ${
-              isDark ? "text-[#888] hover:text-white" : "text-[#666] hover:text-black"
-            }`}
+            className="flex items-center gap-2 text-sm transition-colors text-[#888] hover:text-white"
           >
             <Mail size={14} className="text-[#14B8A6]" />
             sri@witsriram.com
@@ -72,11 +67,7 @@ export default function Footer() {
               href={href}
               target={label === "Phone" || label === "Email" ? undefined : "_blank"}
               rel={label === "Phone" || label === "Email" ? undefined : "noopener noreferrer"}
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 ${
-                isDark
-                  ? "border-[#262420] bg-[#12110F] text-[#5c574e] hover:border-[#332F2A] hover:text-[#e8e4de]"
-                  : "border-[#e0e0e0] bg-white text-[#999] shadow-sm hover:border-[#bbb] hover:text-black"
-              }`}
+              className="flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 border-[#262420] bg-[#12110F] text-[#5c574e] hover:border-[#332F2A] hover:text-[#e8e4de]"
               aria-label={label}
             >
               <Icon size={16} />
@@ -84,7 +75,7 @@ export default function Footer() {
           ))}
         </motion.div>
 
-        <p className={`mt-4 font-mono text-[11px] ${isDark ? "text-[#332F2A]" : "text-[#ccc]"}`}>
+        <p className="mt-4 font-mono text-[11px] text-[#332F2A]">
           © 2026 Sriram Rajendran
         </p>
       </div>

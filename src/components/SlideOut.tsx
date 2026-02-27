@@ -2,11 +2,9 @@ import { useEffect, useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, ChevronDown, Server as ServerIcon, Briefcase, Globe } from "lucide-react";
 import type { CareerPhase, SubProject } from "../data/career";
-import { useTheme } from "./ThemeContext";
 
 /* ── Backdrop ── */
 function Backdrop({ onClick }: { onClick: () => void }) {
-  const { theme } = useTheme();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,9 +12,7 @@ function Backdrop({ onClick }: { onClick: () => void }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
       onClick={onClick}
-      className={`fixed inset-0 z-40 backdrop-blur-sm ${
-        theme === "dark" ? "bg-black/60" : "bg-black/30"
-      }`}
+      className="fixed inset-0 z-40 backdrop-blur-sm bg-black/60"
     />
   );
 }
@@ -25,12 +21,10 @@ function Backdrop({ onClick }: { onClick: () => void }) {
 function SubProjectCard({
   sp,
   color,
-  isDark,
   index,
 }: {
   sp: SubProject;
   color: string;
-  isDark: boolean;
   index: number;
 }) {
   const [open, setOpen] = useState(index === 0);
@@ -40,24 +34,20 @@ function SubProjectCard({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 + index * 0.08, duration: 0.35 }}
-      className={`rounded-xl border overflow-hidden ${
-        isDark ? "border-[#262420] bg-[#100F0D]" : "border-[#e8e8e8] bg-white"
-      }`}
+      className="rounded-xl border overflow-hidden border-[#262420] bg-[#100F0D]"
     >
       {/* Collapsible header */}
       <button
         onClick={() => setOpen((o) => !o)}
-        className={`flex w-full items-center gap-3 px-4 py-3 text-left transition-colors ${
-          isDark ? "hover:bg-[#151310]" : "hover:bg-[#f5f5f5]"
-        }`}
+        className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-[#151310]"
       >
         <Briefcase size={14} style={{ color, flexShrink: 0 }} />
         <div className="flex-1 min-w-0">
-          <p className={`text-sm font-semibold truncate ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}>
+          <p className="text-sm font-semibold truncate text-[#e8e4de]">
             {sp.name}
           </p>
           <div className="flex items-center gap-2">
-            <p className={`font-mono text-[10px] ${isDark ? "text-[#555]" : "text-[#999]"}`}>
+            <p className="font-mono text-[10px] text-[#555]">
               {sp.period} · {sp.infrastructure}
             </p>
             {sp.url && (
@@ -78,7 +68,7 @@ function SubProjectCard({
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <ChevronDown size={14} className={isDark ? "text-[#555]" : "text-[#999]"} />
+          <ChevronDown size={14} className="text-[#555]" />
         </motion.div>
       </button>
 
@@ -92,13 +82,13 @@ function SubProjectCard({
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className={`border-t px-4 py-3 ${isDark ? "border-[#262420]" : "border-[#eee]"}`}>
+            <div className="border-t px-4 py-3 border-[#262420]">
               {/* Highlights */}
               <ul className="mb-3 space-y-1.5">
                 {sp.highlights.map((h, i) => (
                   <li key={i} className="flex gap-2 text-[12px] leading-[1.5]">
                     <span style={{ color }} className="mt-0.5 shrink-0">▸</span>
-                    <span className={isDark ? "text-[#aaa]" : "text-[#555]"}>{h}</span>
+                    <span className="text-[#aaa]">{h}</span>
                   </li>
                 ))}
               </ul>
@@ -108,11 +98,7 @@ function SubProjectCard({
                 {sp.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className={`rounded-md border px-2 py-0.5 font-mono text-[10px] ${
-                      isDark
-                        ? "border-[#262420] bg-[#12110F] text-[#9a9488]"
-                        : "border-[#e0e0e0] bg-[#f5f5f5] text-[#666]"
-                    }`}
+                    className="rounded-md border px-2 py-0.5 font-mono text-[10px] border-[#262420] bg-[#12110F] text-[#9a9488]"
                   >
                     {tech}
                   </span>
@@ -134,9 +120,6 @@ export default function SlideOut({
   phase: CareerPhase | null;
   onClose: () => void;
 }) {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   const handleEscape = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -165,11 +148,7 @@ export default function SlideOut({
 
           <motion.div
             layoutId={`card-${phase.id}`}
-            className={`slide-out-scroll fixed right-0 top-0 z-50 flex h-full w-full flex-col overflow-y-auto border-l backdrop-blur-xl sm:w-[520px] lg:w-[600px] ${
-              isDark
-                ? "border-[#262420] bg-[#0D0C0A]/95"
-                : "border-[#e0e0e0] bg-[#fafafa]/95"
-            }`}
+            className="slide-out-scroll fixed right-0 top-0 z-50 flex h-full w-full flex-col overflow-y-auto border-l backdrop-blur-xl sm:w-[520px] lg:w-[600px] border-[#262420] bg-[#0D0C0A]/95"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -180,11 +159,7 @@ export default function SlideOut({
             }}
           >
             {/* ── Header bar ── */}
-            <div className={`sticky top-0 z-10 flex items-center justify-between border-b px-6 py-4 backdrop-blur-md ${
-              isDark
-                ? "border-[#262420] bg-[#0D0C0A]/90"
-                : "border-[#e0e0e0] bg-[#fafafa]/90"
-            }`}>
+            <div className="sticky top-0 z-10 flex items-center justify-between border-b px-6 py-4 backdrop-blur-md border-[#262420] bg-[#0D0C0A]/90">
               <div className="flex items-center gap-3">
                 <div
                   className="flex h-8 w-8 items-center justify-center rounded-lg"
@@ -199,7 +174,7 @@ export default function SlideOut({
                   >
                     {phase.label}
                   </p>
-                  <p className={`font-mono text-[10px] ${isDark ? "text-[#5c574e]" : "text-[#999]"}`}>
+                  <p className="font-mono text-[10px] text-[#5c574e]">
                     {phase.years} · {phase.company}
                   </p>
                 </div>
@@ -207,11 +182,7 @@ export default function SlideOut({
 
               <button
                 onClick={onClose}
-                className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-colors ${
-                  isDark
-                    ? "border-[#262420] bg-[#12110F] text-[#5c574e] hover:border-[#332F2A] hover:text-[#e8e4de]"
-                    : "border-[#ddd] bg-white text-[#999] hover:border-[#bbb] hover:text-black"
-                }`}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border transition-colors border-[#262420] bg-[#12110F] text-[#5c574e] hover:border-[#332F2A] hover:text-[#e8e4de]"
                 aria-label="Close panel"
               >
                 <X size={14} />
@@ -226,11 +197,11 @@ export default function SlideOut({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.4 }}
               >
-                <h2 className={`mb-1 text-xl font-bold ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}>
+                <h2 className="mb-1 text-xl font-bold text-[#e8e4de]">
                   {phase.title}
                 </h2>
-                <p className={`mb-1 text-sm ${isDark ? "text-[#ccc]" : "text-[#444]"}`}>{phase.project}</p>
-                <p className={`mb-5 text-xs leading-relaxed ${isDark ? "text-[#777]" : "text-[#888]"}`}>
+                <p className="mb-1 text-sm text-[#ccc]">{phase.project}</p>
+                <p className="mb-5 text-xs leading-relaxed text-[#777]">
                   {phase.impact}
                 </p>
               </motion.div>
@@ -258,9 +229,7 @@ export default function SlideOut({
                   >
                     Projects
                   </h3>
-                  <span className={`ml-1 rounded-full px-2 py-0.5 font-mono text-[10px] ${
-                    isDark ? "bg-[#1A1816] text-[#5c574e]" : "bg-[#eee] text-[#999]"
-                  }`}>
+                  <span className="ml-1 rounded-full px-2 py-0.5 font-mono text-[10px] bg-[#1A1816] text-[#5c574e]">
                     {phase.subProjects.length}
                   </span>
                 </div>
@@ -273,7 +242,6 @@ export default function SlideOut({
                     key={sp.name}
                     sp={sp}
                     color={phase.color}
-                    isDark={isDark}
                     index={i}
                   />
                 ))}
@@ -315,11 +283,7 @@ export default function SlideOut({
                       stiffness: 300,
                       damping: 20,
                     }}
-                    className={`rounded-lg border px-3 py-1.5 font-mono text-xs transition-all duration-200 ${
-                      isDark
-                        ? "border-[#262420] bg-[#12110F] text-[#b0a99e] hover:border-[#332F2A] hover:text-[#e8e4de]"
-                        : "border-[#e0e0e0] bg-white text-[#666] hover:border-[#bbb] hover:text-black"
-                    }`}
+                    className="rounded-lg border px-3 py-1.5 font-mono text-xs transition-all duration-200 border-[#262420] bg-[#12110F] text-[#b0a99e] hover:border-[#332F2A] hover:text-[#e8e4de]"
                     style={{
                       boxShadow: `inset 0 1px 0 ${phase.color}08`,
                     }}
@@ -341,7 +305,7 @@ export default function SlideOut({
                     background: `linear-gradient(90deg, ${phase.color}20, transparent)`,
                   }}
                 />
-                <span className={`font-mono text-[10px] ${isDark ? "text-[#332F2A]" : "text-[#ccc]"}`}>
+                <span className="font-mono text-[10px] text-[#332F2A]">
                   {phase.id.toUpperCase().replace("-", ".")}
                 </span>
                 <div
@@ -354,14 +318,10 @@ export default function SlideOut({
             </div>
 
             {/* ── Footer ── */}
-            <div className={`border-t px-6 py-4 ${isDark ? "border-[#262420]" : "border-[#e0e0e0]"}`}>
+            <div className="border-t px-6 py-4 border-[#262420]">
               <button
                 onClick={onClose}
-                className={`w-full rounded-xl border py-2.5 text-sm font-medium transition-all duration-300 ${
-                  isDark
-                    ? "border-[#262420] bg-[#12110F] text-[#9a9488] hover:border-[#332F2A] hover:text-[#e8e4de]"
-                    : "border-[#ddd] bg-white text-[#888] hover:border-[#bbb] hover:text-black"
-                }`}
+                className="w-full rounded-xl border py-2.5 text-sm font-medium transition-all duration-300 border-[#262420] bg-[#12110F] text-[#9a9488] hover:border-[#332F2A] hover:text-[#e8e4de]"
               >
                 Close Deep Dive
               </button>

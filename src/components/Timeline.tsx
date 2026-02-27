@@ -7,7 +7,6 @@ import {
 } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
 import type { CareerPhase } from "../data/career";
-import { useTheme } from "./ThemeContext";
 
 /* ── Company‑join milestone dot  ── */
 interface Milestone {
@@ -28,8 +27,6 @@ const milestones: Milestone[] = [
 function MilestoneDot({ milestone }: { milestone: Milestone }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-20% 0px -20% 0px" });
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const isEducation = milestone.type === "education";
   const color = isEducation ? "#D97706" : "#14B8A6";
   const Icon = isEducation ? GraduationCap : Briefcase;
@@ -45,7 +42,7 @@ function MilestoneDot({ milestone }: { milestone: Milestone }) {
         className="absolute left-1/2 z-20 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border-2 sm:top-1/2 sm:-translate-y-1/2"
         style={{
           borderColor: color,
-          backgroundColor: isInView ? color : isDark ? "#0D0C0A" : "#FAF8F5",
+          backgroundColor: isInView ? color : "#0D0C0A",
           boxShadow: isInView
             ? `0 0 14px ${color}80, 0 0 40px ${color}33`
             : "none",
@@ -63,15 +60,11 @@ function MilestoneDot({ milestone }: { milestone: Milestone }) {
           isLeft
             ? "sm:right-[calc(50%+22px)] sm:left-auto"
             : "sm:left-[calc(50%+22px)]"
-        } ${
-          isDark
-            ? "bg-[#12110F]/90"
-            : "bg-white/90 shadow-sm"
-        }`}
+        } bg-[#12110F]/90`}
         style={{ borderColor: color + "33", color }}
       >
         <span className="font-semibold text-center sm:text-left">{milestone.label}</span>
-        <span className={`font-mono text-[10px] ${isDark ? "text-[#5c574e]" : "text-[#999]"}`}>
+        <span className="font-mono text-[10px] text-[#5c574e]">
           {milestone.date}
         </span>
       </motion.div>
@@ -92,9 +85,6 @@ function TimelineCard({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-15% 0px -15% 0px" });
   const isLeft = index % 2 === 0;
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   const Icon = phase.icon;
 
   return (
@@ -112,7 +102,7 @@ function TimelineCard({
         className="absolute left-1/2 z-20 h-4 w-4 -translate-x-1/2 rounded-full border-2"
         style={{
           borderColor: phase.color,
-          backgroundColor: isInView ? phase.color : isDark ? "#0D0C0A" : "#FAF8F5",
+          backgroundColor: isInView ? phase.color : "#0D0C0A",
           boxShadow: isInView
             ? `0 0 12px ${phase.color}60, 0 0 30px ${phase.color}25`
             : "none",
@@ -126,8 +116,8 @@ function TimelineCard({
         transition={{ duration: 0.4, delay: 0.1 }}
         className={`absolute top-1/2 z-10 h-px -translate-y-1/2 ${
           isLeft
-            ? "left-[calc(50%+8px)] w-[calc(8%-8px)] origin-left"
-            : "right-[calc(50%+8px)] w-[calc(8%-8px)] origin-right"
+            ? "right-[calc(50%+8px)] w-[calc(8%-8px)] origin-right"
+            : "left-[calc(50%+8px)] w-[calc(8%-8px)] origin-left"
         }`}
         style={{ backgroundColor: phase.color + "40" }}
       />
@@ -143,11 +133,7 @@ function TimelineCard({
         }
         transition={{ type: "spring", stiffness: 200, damping: 25, delay: 0.15 }}
         onClick={() => onSelect(phase)}
-        className={`group relative z-10 w-[42%] cursor-pointer rounded-lg border px-3 py-2.5 text-left backdrop-blur-sm transition-colors duration-300 ${
-          isDark
-            ? "border-[#262420] bg-[#12110F]/90"
-            : "border-[#e0e0e0] bg-white/90 shadow-sm"
-        }`}
+        className="group relative z-10 w-[42%] cursor-pointer rounded-lg border px-3 py-2.5 text-left backdrop-blur-sm transition-colors duration-300 border-[#262420] bg-[#12110F]/90"
         style={{
           boxShadow: isInView
             ? `0 0 40px ${phase.color}08, inset 0 1px 0 ${phase.color}10`
@@ -172,12 +158,12 @@ function TimelineCard({
             >
               {phase.label}
             </p>
-            <p className={`font-mono text-[11px] ${isDark ? "text-[#5c574e]" : "text-[#999]"}`}>{phase.years}</p>
+            <p className="font-mono text-[11px] text-[#5c574e]">{phase.years}</p>
           </div>
         </div>
 
         {/* Title */}
-        <h3 className={`mb-0.5 text-xs font-bold ${isDark ? "text-[#e8e4de]/90" : "text-[#1a1a1a]"}`}>
+        <h3 className="mb-0.5 text-xs font-bold text-[#e8e4de]/90">
           {phase.title}
         </h3>
 
@@ -192,7 +178,7 @@ function TimelineCard({
           {phase.clients.map((client) => (
             <span
               key={client}
-              className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium ${isDark ? 'bg-[#1A1816] text-[#9a9488]' : 'bg-[#f0f0f0] text-[#666]'}`}
+              className="rounded-md px-1.5 py-0.5 text-[10px] font-medium bg-[#1A1816] text-[#9a9488]"
             >
               {client}
             </span>
@@ -200,7 +186,7 @@ function TimelineCard({
         </div>
 
         {/* Impact */}
-        <p className={`text-[11px] leading-snug ${isDark ? "text-[#6b665c]" : "text-[#888]"}`}>{phase.impact}</p>
+        <p className="text-[11px] leading-snug text-[#6b665c]">{phase.impact}</p>
 
         {/* Expand hint */}
         <div
@@ -232,8 +218,6 @@ export default function Timeline({
   onSelectPhase: (phase: CareerPhase) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 60%", "end 40%"],
@@ -262,7 +246,7 @@ export default function Timeline({
   );
 
   return (
-    <section id="timeline" className="relative pt-4 pb-12">
+    <section id="timeline" className="relative pt-2 pb-6">
       {/* Section heading */}
       <div className="mb-4 text-center">
         <motion.p
@@ -279,7 +263,7 @@ export default function Timeline({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className={`text-3xl font-bold sm:text-4xl ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}
+          className="text-3xl font-bold sm:text-4xl text-[#e8e4de]"
         >
           2026 → 2008
         </motion.h2>
@@ -287,7 +271,7 @@ export default function Timeline({
 
       <div ref={containerRef} className="relative mx-auto max-w-6xl px-6">
         {/* Static background line */}
-        <div className={`absolute left-1/2 top-0 h-full w-px -translate-x-1/2 ${isDark ? "bg-[#1A1816]" : "bg-[#ddd]"}`} />
+        <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[#1A1816]" />
 
         {/* Animated glowing overlay line */}
         <motion.div

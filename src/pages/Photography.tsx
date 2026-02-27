@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ImagePlus } from "lucide-react";
-import { useTheme } from "../components/ThemeContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -27,16 +26,10 @@ const photos: Photo[] = [
 ];
 
 export default function Photography() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   return (
-    <div
-      className={`min-h-screen font-sans transition-colors duration-500 ${
-        isDark ? "bg-void text-text-primary" : "bg-[#FAF8F5] text-[#1a1a1a]"
-      }`}
-    >
+    <div className="min-h-screen font-sans transition-colors duration-500 bg-void text-text-primary">
       <Header />
 
       <main className="mx-auto max-w-5xl px-6 pt-24 pb-20">
@@ -50,18 +43,10 @@ export default function Photography() {
           <p className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#14B8A6]">
             Landscape Photography
           </p>
-          <h1
-            className={`text-4xl font-bold sm:text-5xl ${
-              isDark ? "text-white" : "text-[#1a1a1a]"
-            }`}
-          >
+          <h1 className="text-4xl font-bold sm:text-5xl text-white">
             Photography
           </h1>
-          <p
-            className={`mt-3 text-base leading-relaxed ${
-              isDark ? "text-[#9a9488]" : "text-[#666]"
-            }`}
-          >
+          <p className="mt-3 text-base leading-relaxed text-[#9a9488]">
             Landscapes, nature, and moments captured through my lens.
           </p>
         </motion.div>
@@ -72,28 +57,16 @@ export default function Photography() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className={`flex flex-col items-center justify-center rounded-2xl border-2 border-dashed py-24 ${
-              isDark
-                ? "border-[#262420] bg-[#12110F]/40"
-                : "border-[#ddd] bg-white/40"
-            }`}
+            className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed py-24 border-[#262420] bg-[#12110F]/40"
           >
             <ImagePlus
               size={48}
-              className={`mb-4 ${isDark ? "text-[#333]" : "text-[#ccc]"}`}
+              className="mb-4 text-[#333]"
             />
-            <p
-              className={`text-lg font-semibold ${
-                isDark ? "text-[#444]" : "text-[#bbb]"
-              }`}
-            >
+            <p className="text-lg font-semibold text-[#444]">
               Gallery Coming Soon
             </p>
-            <p
-              className={`mt-2 max-w-sm text-center text-sm ${
-                isDark ? "text-[#333]" : "text-[#ccc]"
-              }`}
-            >
+            <p className="mt-2 max-w-sm text-center text-sm text-[#333]">
               Drop photos into <code className="font-mono text-[#14B8A6]">public/photos/</code> and
               add entries to the photos array in this page to build your gallery.
             </p>
@@ -112,11 +85,7 @@ export default function Photography() {
                 >
                   <button
                     onClick={() => setSelectedPhoto(photo)}
-                    className={`group relative w-full overflow-hidden rounded-2xl border transition-all duration-300 ${
-                      isDark
-                        ? "border-[#262420] hover:border-[#332F2A] hover:shadow-[0_0_30px_rgba(20,184,166,0.06)]"
-                        : "border-[#e0e0e0] shadow-sm hover:border-[#ccc] hover:shadow-md"
-                    }`}
+                    className="group relative w-full overflow-hidden rounded-2xl border transition-all duration-300 border-[#262420] hover:border-[#332F2A] hover:shadow-[0_0_30px_rgba(20,184,166,0.06)]"
                   >
                     <img
                       src={photo.src}

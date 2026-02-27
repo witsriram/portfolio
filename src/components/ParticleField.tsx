@@ -1,5 +1,4 @@
 import { useEffect, useRef, useCallback } from "react";
-import { useTheme } from "./ThemeContext";
 
 interface Particle {
   x: number;
@@ -14,7 +13,6 @@ interface Particle {
 
 export default function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { theme } = useTheme();
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const animRef = useRef<number>(0);
@@ -58,9 +56,8 @@ export default function ParticleField() {
     };
     window.addEventListener("mousemove", handleMouse);
 
-    const isDark = theme === "dark";
-    const baseColor = isDark ? [20, 184, 166] : [4, 120, 87]; // teal-500 or emerald-700
-    const lineColor = isDark ? [20, 184, 166] : [13, 148, 136];
+    const baseColor = [20, 184, 166];
+    const lineColor = [20, 184, 166];
     const connectionDist = 120;
 
     const animate = () => {
@@ -130,13 +127,13 @@ export default function ParticleField() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouse);
     };
-  }, [theme, initParticles]);
+  }, [initParticles]);
 
   return (
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-0"
-      style={{ opacity: theme === "dark" ? 0.6 : 0.3 }}
+      style={{ opacity: 0.6 }}
     />
   );
 }

@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Mail, Sun, Moon, PenLine, Heart, ChevronDown, Footprints, Camera } from "lucide-react";
+import { Github, Linkedin, Mail, PenLine, Heart, ChevronDown, Footprints, Camera } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useTheme } from "./ThemeContext";
-
 const links = [
   { icon: Mail, href: "mailto:sri@witsriram.com", label: "sri@witsriram.com" },
   { icon: Github, href: "https://github.com/witsriram", label: "GitHub", external: true },
@@ -11,49 +9,37 @@ const links = [
 ];
 
 export default function Header() {
-  const { theme, toggle } = useTheme();
-  const isDark = theme === "dark";
 
   return (
     <motion.header
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.1 }}
-      className={`fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-xl transition-colors duration-300 ${
-        isDark
-          ? "border-[#262420]/40 bg-[#0D0C0A]/70"
-          : "border-black/[0.06] bg-white/70"
-      }`}
+      className="fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-xl transition-colors duration-300 border-[#262420]/40 bg-[#0D0C0A]/70"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2.5">
         {/* Logo */}
         <a
           href="/"
-          className={`font-mono text-sm font-bold tracking-wider transition-colors ${
-            isDark ? "text-[#ccc] hover:text-white" : "text-[#333] hover:text-black"
-          }`}
+          className="group flex items-center gap-1.5 font-mono text-sm transition-colors"
         >
-          {"<"}
-          <span className="text-[#14B8A6]">SR</span>
-          {" />"}
+          <span className="text-[#5c574e] transition-colors group-hover:text-[#14B8A6]/60">~/</span>
+          <span className="font-semibold tracking-wide transition-colors text-[#e8e4de] group-hover:text-white">sriram</span>
+          <span className="inline-block w-[2px] h-4 bg-[#14B8A6] animate-pulse" />
         </a>
 
         <div className="flex items-center gap-1">
           {/* Blog link */}
           <Link
             to="/blog"
-            className={`mr-1 flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-all duration-200 ${
-              isDark
-                ? "text-[#555] hover:bg-white/[0.04] hover:text-white"
-                : "text-[#888] hover:bg-black/[0.04] hover:text-black"
-            }`}
+            className="mr-1 flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-all duration-200 text-[#555] hover:bg-white/[0.04] hover:text-white"
           >
             <PenLine size={13} className="shrink-0" />
             <span className="hidden sm:inline">Blog</span>
           </Link>
 
           {/* Hobbies dropdown */}
-          <HobbiesDropdown isDark={isDark} />
+          <HobbiesDropdown />
           {/* Contact links */}
           <nav className="flex items-center gap-0.5">
             {links.map(({ icon: Icon, href, label, external }) => (
@@ -62,11 +48,7 @@ export default function Header() {
                 href={href}
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
-                className={`group flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 transition-all duration-200 ${
-                  isDark
-                    ? "text-[#555] hover:bg-white/[0.04] hover:text-white"
-                    : "text-[#888] hover:bg-black/[0.04] hover:text-black"
-                }`}
+                className="group flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 transition-all duration-200 text-[#555] hover:bg-white/[0.04] hover:text-white"
                 aria-label={label}
               >
                 <Icon size={13} className="shrink-0" />
@@ -75,28 +57,6 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Theme toggle */}
-          <motion.button
-            onClick={toggle}
-            whileTap={{ scale: 0.9, rotate: 180 }}
-            transition={{ type: "spring", stiffness: 300, damping: 15 }}
-            className={`ml-2 flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${
-              isDark
-                ? "border-[#262420] bg-[#12110F] text-yellow-400 hover:border-yellow-400/30 hover:shadow-[0_0_15px_rgba(250,204,21,0.1)]"
-                : "border-[#ddd] bg-white text-indigo-600 hover:border-indigo-400/30 hover:shadow-[0_0_15px_rgba(99,102,241,0.1)]"
-            }`}
-            aria-label="Toggle theme"
-          >
-            <motion.div
-              key={theme}
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {isDark ? <Sun size={14} /> : <Moon size={14} />}
-            </motion.div>
-          </motion.button>
         </div>
       </div>
     </motion.header>
@@ -104,16 +64,24 @@ export default function Header() {
 }
 
 /* ── Hobbies dropdown ── */
-function HobbiesDropdown({ isDark }: { isDark: boolean }) {
+function HobbiesDropdown() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showDropdown = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+
+  const hideDropdown = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 150);
+  };
 
   useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, []);
 
   const items = [
@@ -122,14 +90,14 @@ function HobbiesDropdown({ isDark }: { isDark: boolean }) {
   ];
 
   return (
-    <div ref={ref} className="relative mr-1">
+    <div
+      ref={ref}
+      className="relative mr-1"
+      onMouseEnter={showDropdown}
+      onMouseLeave={hideDropdown}
+    >
       <button
-        onClick={() => setOpen((o) => !o)}
-        className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-all duration-200 ${
-          isDark
-            ? "text-[#555] hover:bg-white/[0.04] hover:text-white"
-            : "text-[#888] hover:bg-black/[0.04] hover:text-black"
-        }`}
+        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-all duration-200 text-[#555] hover:bg-white/[0.04] hover:text-white"
       >
         <Heart size={13} className="shrink-0" />
         <span className="hidden sm:inline">Hobbies</span>
@@ -146,22 +114,14 @@ function HobbiesDropdown({ isDark }: { isDark: boolean }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className={`absolute right-0 top-full mt-1.5 w-44 overflow-hidden rounded-xl border shadow-xl backdrop-blur-xl ${
-              isDark
-                ? "border-[#262420] bg-[#12110F]/95"
-                : "border-[#e0e0e0] bg-white/95"
-            }`}
+            className="absolute right-0 top-full mt-1.5 w-44 overflow-hidden rounded-xl border shadow-xl backdrop-blur-xl border-[#262420] bg-[#12110F]/95"
           >
             {items.map(({ to, icon: Icon, label }) => (
               <Link
                 key={to}
                 to={to}
                 onClick={() => setOpen(false)}
-                className={`flex items-center gap-2.5 px-4 py-2.5 text-[12px] font-medium transition-colors ${
-                  isDark
-                    ? "text-[#888] hover:bg-white/[0.04] hover:text-white"
-                    : "text-[#666] hover:bg-black/[0.03] hover:text-black"
-                }`}
+                className="flex items-center gap-2.5 px-4 py-2.5 text-[12px] font-medium transition-colors text-[#888] hover:bg-white/[0.04] hover:text-white"
               >
                 <Icon size={14} className="text-[#14B8A6]" />
                 {label}

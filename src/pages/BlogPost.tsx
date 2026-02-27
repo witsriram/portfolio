@@ -1,24 +1,17 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
-import { useTheme } from "../components/ThemeContext";
 import { getPostBySlug } from "../data/blog";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const post = slug ? getPostBySlug(slug) : null;
 
   if (!post) {
     return (
-      <div
-        className={`flex min-h-screen items-center justify-center font-sans ${
-          isDark ? "bg-void text-text-primary" : "bg-[#FAF8F5] text-[#1a1a1a]"
-        }`}
-      >
+      <div className="flex min-h-screen items-center justify-center font-sans bg-void text-text-primary">
         <Header />
         <div className="text-center">
           <h1 className="mb-4 text-4xl font-bold">Post not found</h1>
@@ -36,11 +29,7 @@ export default function BlogPost() {
   const { Component } = post;
 
   return (
-    <div
-      className={`min-h-screen font-sans transition-colors duration-500 ${
-        isDark ? "bg-void text-text-primary" : "bg-[#FAF8F5] text-[#1a1a1a]"
-      }`}
-    >
+    <div className="min-h-screen font-sans transition-colors duration-500 bg-void text-text-primary">
       <Header />
 
       <main className="mx-auto max-w-3xl px-6 pt-24 pb-20">
@@ -52,11 +41,7 @@ export default function BlogPost() {
         >
           <Link
             to="/blog"
-            className={`mb-8 inline-flex items-center gap-2 text-sm transition-colors ${
-              isDark
-                ? "text-[#5c574e] hover:text-white"
-                : "text-[#aaa] hover:text-black"
-            }`}
+            className="mb-8 inline-flex items-center gap-2 text-sm transition-colors text-[#5c574e] hover:text-white"
           >
             <ArrowLeft size={14} />
             Back to Blog
@@ -70,20 +55,12 @@ export default function BlogPost() {
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <h1
-            className={`text-3xl font-bold leading-tight sm:text-4xl ${
-              isDark ? "text-white" : "text-[#1a1a1a]"
-            }`}
-          >
+          <h1 className="text-3xl font-bold leading-tight sm:text-4xl text-white">
             {post.title}
           </h1>
 
           <div className="mt-4 flex flex-wrap items-center gap-4">
-            <span
-              className={`flex items-center gap-1.5 text-xs ${
-                isDark ? "text-[#5c574e]" : "text-[#aaa]"
-              }`}
-            >
+            <span className="flex items-center gap-1.5 text-xs text-[#5c574e]">
               <Calendar size={12} />
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -91,11 +68,7 @@ export default function BlogPost() {
                 day: "numeric",
               })}
             </span>
-            <span
-              className={`flex items-center gap-1.5 text-xs ${
-                isDark ? "text-[#5c574e]" : "text-[#aaa]"
-              }`}
-            >
+            <span className="flex items-center gap-1.5 text-xs text-[#5c574e]">
               <Clock size={12} />
               {post.readingTime}
             </span>
@@ -103,11 +76,7 @@ export default function BlogPost() {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className={`flex items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-medium ${
-                    isDark
-                      ? "border-[#262420] bg-[#1A1816] text-[#5c574e]"
-                      : "border-[#e0e0e0] bg-[#f0f0f0] text-[#888]"
-                  }`}
+                  className="flex items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-medium border-[#262420] bg-[#1A1816] text-[#5c574e]"
                 >
                   <Tag size={9} />
                   {tag}
@@ -116,11 +85,7 @@ export default function BlogPost() {
             </div>
           </div>
 
-          <div
-            className={`mt-6 h-px w-full ${
-              isDark ? "bg-[#262420]" : "bg-[#e0e0e0]"
-            }`}
-          />
+          <div className="mt-6 h-px w-full bg-[#262420]" />
         </motion.div>
 
         {/* MDX content */}
@@ -128,25 +93,18 @@ export default function BlogPost() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className={`prose max-w-none ${
-            isDark ? "prose-invert" : ""
-          } prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
+          className="prose max-w-none prose-invert prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
             prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
             prose-p:leading-relaxed prose-p:mb-4
             prose-a:text-[#14B8A6] prose-a:no-underline hover:prose-a:underline
             prose-code:rounded prose-code:px-1.5 prose-code:py-0.5 prose-code:text-sm
             prose-pre:rounded-xl prose-pre:border
-            ${
-              isDark
-                ? "prose-code:bg-[#1A1816] prose-code:text-[#e0e0e0] prose-pre:border-[#262420] prose-pre:bg-[#12110F]"
-                : "prose-code:bg-[#f0f0f0] prose-code:text-[#333] prose-pre:border-[#e0e0e0] prose-pre:bg-[#fafafa]"
-            }
+            prose-code:bg-[#1A1816] prose-code:text-[#e0e0e0] prose-pre:border-[#262420] prose-pre:bg-[#12110F]
             prose-li:marker:text-[#14B8A6]
             prose-blockquote:border-l-[#14B8A6] prose-blockquote:italic
-            ${isDark ? "prose-blockquote:text-[#9a9488]" : "prose-blockquote:text-[#666]"}
+            prose-blockquote:text-[#9a9488]
             prose-strong:font-semibold
-            ${isDark ? "prose-strong:text-white" : "prose-strong:text-[#1a1a1a]"}
-          `}
+            prose-strong:text-white"
         >
           <Component />
         </motion.article>
