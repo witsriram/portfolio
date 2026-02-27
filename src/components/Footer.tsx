@@ -7,10 +7,10 @@ export default function Footer() {
   const isDark = theme === "dark";
 
   return (
-    <footer className={`relative border-t pt-4 pb-12 ${isDark ? "border-[#111]" : "border-[#e0e0e0]"}`}>
+    <footer className={`relative border-t pt-4 pb-12 ${isDark ? "border-[#1A1816]" : "border-[#e0e0e0]"}`}>
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute bottom-0 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(14,165,233,0.04)_0%,transparent_70%)]" />
+        <div className="absolute bottom-0 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(20,184,166,0.04)_0%,transparent_70%)]" />
       </div>
 
       <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-center">
@@ -19,7 +19,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={`font-mono text-xs uppercase tracking-[4px] ${isDark ? "text-[#444]" : "text-[#aaa]"}`}
+          className={`font-mono text-xs uppercase tracking-[4px] ${isDark ? "text-[#3d3a35]" : "text-[#aaa]"}`}
         >
           Let&apos;s Build the Future
         </motion.p>
@@ -29,7 +29,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className={`text-2xl font-bold sm:text-3xl ${isDark ? "text-white" : "text-[#1a1a1a]"}`}
+          className={`text-2xl font-bold sm:text-3xl ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}
         >
           Sriram Rajendran
         </motion.h3>
@@ -48,7 +48,7 @@ export default function Footer() {
               isDark ? "text-[#888] hover:text-white" : "text-[#666] hover:text-black"
             }`}
           >
-            <Mail size={14} className="text-[#0EA5E9]" />
+            <Mail size={14} className="text-[#14B8A6]" />
             sri@witsriram.com
           </a>
 
@@ -74,7 +74,7 @@ export default function Footer() {
               rel={label === "Phone" || label === "Email" ? undefined : "noopener noreferrer"}
               className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 ${
                 isDark
-                  ? "border-[#1a1a1a] bg-[#0a0a0a] text-[#666] hover:border-[#333] hover:text-white"
+                  ? "border-[#262420] bg-[#12110F] text-[#5c574e] hover:border-[#332F2A] hover:text-[#e8e4de]"
                   : "border-[#e0e0e0] bg-white text-[#999] shadow-sm hover:border-[#bbb] hover:text-black"
               }`}
               aria-label={label}
@@ -84,7 +84,7 @@ export default function Footer() {
           ))}
         </motion.div>
 
-        <p className={`mt-4 font-mono text-[11px] ${isDark ? "text-[#333]" : "text-[#ccc]"}`}>
+        <p className={`mt-4 font-mono text-[11px] ${isDark ? "text-[#332F2A]" : "text-[#ccc]"}`}>
           © 2026 Sriram Rajendran
         </p>
       </div>

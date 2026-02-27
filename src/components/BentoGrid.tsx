@@ -31,7 +31,7 @@ function TechCard({
       }}
       className={`group rounded-2xl border p-5 transition-all duration-300 ${
         isDark
-          ? "border-[#1a1a1a] bg-[#0a0a0a]/80 hover:border-[#2a2a2a]"
+          ? "border-[#262420] bg-[#12110F]/80 hover:border-[#332F2A]"
           : "border-[#e0e0e0] bg-white/80 shadow-sm hover:border-[#ccc]"
       }`}
     >
@@ -42,7 +42,7 @@ function TechCard({
         >
           <Icon size={16} style={{ color: category.color }} />
         </div>
-        <h4 className={`text-sm font-semibold ${isDark ? "text-white" : "text-[#1a1a1a]"}`}>{category.category}</h4>
+        <h4 className={`text-sm font-semibold ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}>{category.category}</h4>
       </div>
 
       <div className="flex flex-wrap gap-1.5">
@@ -51,7 +51,7 @@ function TechCard({
             key={item}
             className={`rounded-md border px-2.5 py-1 font-mono text-[11px] transition-colors duration-200 ${
               isDark
-                ? "border-[#1a1a1a] bg-[#111] text-[#888] hover:border-[#333] hover:text-white"
+                ? "border-[#262420] bg-[#1A1816] text-[#9a9488] hover:border-[#332F2A] hover:text-[#e8e4de]"
                 : "border-[#e0e0e0] bg-[#f0f0f0] text-[#666] hover:border-[#bbb] hover:text-black"
             }`}
           >
@@ -82,7 +82,7 @@ export default function BentoGrid({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#0EA5E9]"
+            className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#14B8A6]"
           >
             Capabilities
           </motion.p>
@@ -91,7 +91,7 @@ export default function BentoGrid({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className={`text-3xl font-bold sm:text-4xl ${isDark ? "text-white" : "text-[#1a1a1a]"}`}
+            className={`text-3xl font-bold sm:text-4xl ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}
           >
             The Full Technology Matrix
           </motion.h2>

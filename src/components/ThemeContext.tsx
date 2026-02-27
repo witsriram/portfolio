@@ -28,8 +28,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("sr-theme", theme);
 
     // Update body bg
-    document.body.style.backgroundColor = theme === "dark" ? "#020202" : "#f5f5f7";
-    document.body.style.color = theme === "dark" ? "#f0f0f0" : "#1a1a1a";
+    document.body.style.backgroundColor = theme === "dark" ? "#0D0C0A" : "#FAF8F5";
+    document.body.style.color = theme === "dark" ? "#e8e4de" : "#1a1a1a";
   }, [theme]);
 
   const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));

@@ -32,7 +32,7 @@ export default function Running() {
   return (
     <div
       className={`min-h-screen font-sans transition-colors duration-500 ${
-        isDark ? "bg-void text-text-primary" : "bg-[#f5f5f7] text-[#1a1a1a]"
+        isDark ? "bg-void text-text-primary" : "bg-[#FAF8F5] text-[#1a1a1a]"
       }`}
     >
       <Header />
@@ -45,7 +45,7 @@ export default function Running() {
           transition={{ duration: 0.6 }}
           className="mb-14 text-center"
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#0EA5E9]">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#14B8A6]">
             Half Marathons
           </p>
           <h1
@@ -57,7 +57,7 @@ export default function Running() {
           </h1>
           <p
             className={`mt-3 text-base leading-relaxed ${
-              isDark ? "text-[#888]" : "text-[#666]"
+              isDark ? "text-[#9a9488]" : "text-[#666]"
             }`}
           >
             From the red rocks of Sedona to the Pacific Northwest —
@@ -79,13 +79,13 @@ export default function Running() {
                 key={stat.label}
                 className={`rounded-2xl border p-5 text-center transition-colors ${
                   isDark
-                    ? "border-[#1a1a1a] bg-[#0a0a0a]/80"
+                    ? "border-[#262420] bg-[#12110F]/80"
                     : "border-[#e0e0e0] bg-white/80 shadow-sm"
                 }`}
               >
                 <Icon
                   size={20}
-                  className="mx-auto mb-2 text-[#0EA5E9]"
+                  className="mx-auto mb-2 text-[#14B8A6]"
                 />
                 <p
                   className={`text-2xl font-bold ${
@@ -96,7 +96,7 @@ export default function Running() {
                 </p>
                 <p
                   className={`mt-1 text-xs ${
-                    isDark ? "text-[#555]" : "text-[#aaa]"
+                    isDark ? "text-[#5c574e]" : "text-[#aaa]"
                   }`}
                 >
                   {stat.label}
@@ -129,7 +129,7 @@ export default function Running() {
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
                 className={`group relative overflow-hidden rounded-2xl border p-6 transition-all duration-300 ${
                   isDark
-                    ? "border-[#1a1a1a] bg-[#0a0a0a]/80 hover:border-[#2a2a2a] hover:shadow-[0_0_30px_rgba(14,165,233,0.06)]"
+                    ? "border-[#262420] bg-[#12110F]/80 hover:border-[#332F2A] hover:shadow-[0_0_30px_rgba(20,184,166,0.06)]"
                     : "border-[#e0e0e0] bg-white/80 shadow-sm hover:border-[#ccc] hover:shadow-md"
                 }`}
               >
@@ -138,8 +138,8 @@ export default function Running() {
                   <span
                     className={`rounded-full border px-3 py-1 text-xs font-mono font-bold ${
                       isDark
-                        ? "border-[#1a1a1a] bg-[#111] text-[#0EA5E9]"
-                        : "border-[#e0e0e0] bg-[#f0f0f0] text-[#0EA5E9]"
+                        ? "border-[#262420] bg-[#1A1816] text-[#14B8A6]"
+                        : "border-[#e0e0e0] bg-[#f0f0f0] text-[#14B8A6]"
                     }`}
                   >
                     {race.year}
@@ -150,10 +150,10 @@ export default function Running() {
                   {/* Trophy icon */}
                   <div
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
-                      isDark ? "bg-[#111]" : "bg-[#f0f0f0]"
+                      isDark ? "bg-[#1A1816]" : "bg-[#f0f0f0]"
                     }`}
                   >
-                    <Trophy size={18} className="text-[#0EA5E9]" />
+                    <Trophy size={18} className="text-[#14B8A6]" />
                   </div>
 
                   <div className="flex-1">
@@ -168,7 +168,7 @@ export default function Running() {
                     <div className="mt-2 flex flex-wrap items-center gap-4">
                       <span
                         className={`flex items-center gap-1.5 text-xs ${
-                          isDark ? "text-[#555]" : "text-[#aaa]"
+                          isDark ? "text-[#5c574e]" : "text-[#aaa]"
                         }`}
                       >
                         <MapPin size={12} />
@@ -176,7 +176,7 @@ export default function Running() {
                       </span>
                       <span
                         className={`flex items-center gap-1.5 text-xs ${
-                          isDark ? "text-[#555]" : "text-[#aaa]"
+                          isDark ? "text-[#5c574e]" : "text-[#aaa]"
                         }`}
                       >
                         <Clock size={12} />
@@ -185,7 +185,7 @@ export default function Running() {
                       <span
                         className={`rounded-md border px-2 py-0.5 text-[10px] font-medium ${
                           isDark
-                            ? "border-[#1a1a1a] bg-[#111] text-[#666]"
+                            ? "border-[#262420] bg-[#1A1816] text-[#5c574e]"
                             : "border-[#e0e0e0] bg-[#f0f0f0] text-[#888]"
                         }`}
                       >
@@ -198,7 +198,7 @@ export default function Running() {
                 {/* Sub-2 hour badge for PR */}
                 {race.time === "1:59" && (
                   <div className="mt-3 ml-14">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-[#0EA5E9]/10 px-3 py-1 text-[10px] font-semibold text-[#0EA5E9]">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-[#14B8A6]/10 px-3 py-1 text-[10px] font-semibold text-[#14B8A6]">
                       <TrendingUp size={10} />
                       Sub-2 Hour Finish
                     </span>
@@ -216,14 +216,14 @@ export default function Running() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className={`mt-14 rounded-2xl border p-6 text-center ${
             isDark
-              ? "border-[#1a1a1a] bg-[#0a0a0a]/60"
+              ? "border-[#262420] bg-[#12110F]/60"
               : "border-[#e0e0e0] bg-white/60 shadow-sm"
           }`}
         >
-          <Footprints size={24} className="mx-auto mb-3 text-[#0EA5E9]" />
+          <Footprints size={24} className="mx-auto mb-3 text-[#14B8A6]" />
           <p
             className={`text-sm leading-relaxed ${
-              isDark ? "text-[#888]" : "text-[#666]"
+              isDark ? "text-[#9a9488]" : "text-[#666]"
             }`}
           >
             2,000 km and counting. Every mile is a reminder that consistency beats intensity —

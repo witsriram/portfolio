@@ -59,8 +59,8 @@ export default function ParticleField() {
     window.addEventListener("mousemove", handleMouse);
 
     const isDark = theme === "dark";
-    const baseColor = isDark ? [14, 165, 233] : [30, 64, 175]; // sky-500 or blue-800
-    const lineColor = isDark ? [14, 165, 233] : [37, 99, 235];
+    const baseColor = isDark ? [20, 184, 166] : [4, 120, 87]; // teal-500 or emerald-700
+    const lineColor = isDark ? [20, 184, 166] : [13, 148, 136];
     const connectionDist = 120;
 
     const animate = () => {

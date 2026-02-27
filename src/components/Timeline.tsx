@@ -31,7 +31,7 @@ function MilestoneDot({ milestone }: { milestone: Milestone }) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const isEducation = milestone.type === "education";
-  const color = isEducation ? "#8B5CF6" : "#0EA5E9";
+  const color = isEducation ? "#D97706" : "#14B8A6";
   const Icon = isEducation ? GraduationCap : Briefcase;
   const isLeft = milestone.side === "left";
 
@@ -45,7 +45,7 @@ function MilestoneDot({ milestone }: { milestone: Milestone }) {
         className="absolute left-1/2 z-20 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border-2 sm:top-1/2 sm:-translate-y-1/2"
         style={{
           borderColor: color,
-          backgroundColor: isInView ? color : isDark ? "#020202" : "#f5f5f7",
+          backgroundColor: isInView ? color : isDark ? "#0D0C0A" : "#FAF8F5",
           boxShadow: isInView
             ? `0 0 14px ${color}80, 0 0 40px ${color}33`
             : "none",
@@ -65,13 +65,13 @@ function MilestoneDot({ milestone }: { milestone: Milestone }) {
             : "sm:left-[calc(50%+22px)]"
         } ${
           isDark
-            ? "bg-[#0a0a0a]/90"
+            ? "bg-[#12110F]/90"
             : "bg-white/90 shadow-sm"
         }`}
         style={{ borderColor: color + "33", color }}
       >
         <span className="font-semibold text-center sm:text-left">{milestone.label}</span>
-        <span className={`font-mono text-[10px] ${isDark ? "text-[#555]" : "text-[#999]"}`}>
+        <span className={`font-mono text-[10px] ${isDark ? "text-[#5c574e]" : "text-[#999]"}`}>
           {milestone.date}
         </span>
       </motion.div>
@@ -112,7 +112,7 @@ function TimelineCard({
         className="absolute left-1/2 z-20 h-4 w-4 -translate-x-1/2 rounded-full border-2"
         style={{
           borderColor: phase.color,
-          backgroundColor: isInView ? phase.color : isDark ? "#020202" : "#f5f5f7",
+          backgroundColor: isInView ? phase.color : isDark ? "#0D0C0A" : "#FAF8F5",
           boxShadow: isInView
             ? `0 0 12px ${phase.color}60, 0 0 30px ${phase.color}25`
             : "none",
@@ -145,7 +145,7 @@ function TimelineCard({
         onClick={() => onSelect(phase)}
         className={`group relative z-10 w-[42%] cursor-pointer rounded-lg border px-3 py-2.5 text-left backdrop-blur-sm transition-colors duration-300 ${
           isDark
-            ? "border-[#1a1a1a] bg-[#0a0a0a]/90"
+            ? "border-[#262420] bg-[#12110F]/90"
             : "border-[#e0e0e0] bg-white/90 shadow-sm"
         }`}
         style={{
@@ -172,12 +172,12 @@ function TimelineCard({
             >
               {phase.label}
             </p>
-            <p className={`font-mono text-[11px] ${isDark ? "text-[#555]" : "text-[#999]"}`}>{phase.years}</p>
+            <p className={`font-mono text-[11px] ${isDark ? "text-[#5c574e]" : "text-[#999]"}`}>{phase.years}</p>
           </div>
         </div>
 
         {/* Title */}
-        <h3 className={`mb-0.5 text-xs font-bold ${isDark ? "text-white/90" : "text-[#1a1a1a]"}`}>
+        <h3 className={`mb-0.5 text-xs font-bold ${isDark ? "text-[#e8e4de]/90" : "text-[#1a1a1a]"}`}>
           {phase.title}
         </h3>
 
@@ -192,7 +192,7 @@ function TimelineCard({
           {phase.clients.map((client) => (
             <span
               key={client}
-              className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium ${isDark ? 'bg-[#111] text-[#888]' : 'bg-[#f0f0f0] text-[#666]'}`}
+              className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium ${isDark ? 'bg-[#1A1816] text-[#9a9488]' : 'bg-[#f0f0f0] text-[#666]'}`}
             >
               {client}
             </span>
@@ -200,7 +200,7 @@ function TimelineCard({
         </div>
 
         {/* Impact */}
-        <p className={`text-[11px] leading-snug ${isDark ? "text-[#666]" : "text-[#888]"}`}>{phase.impact}</p>
+        <p className={`text-[11px] leading-snug ${isDark ? "text-[#6b665c]" : "text-[#888]"}`}>{phase.impact}</p>
 
         {/* Expand hint */}
         <div
@@ -242,22 +242,22 @@ export default function Timeline({
   /* The central line grows as user scrolls */
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  /* Gradient color shift: sky → royal → deep → cyan → purple */
+  /* Gradient color shift: teal → emerald → forest → amber → warm-gold */
   const lineColor = useTransform(
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
-    ["#0EA5E9", "#2563EB", "#1E40AF", "#06B6D4", "#8B5CF6"]
+    ["#14B8A6", "#0D9488", "#047857", "#D97706", "#B45309"]
   );
 
   const lineGlow = useTransform(
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
     [
-      "0 0 20px #0EA5E940, 0 0 60px #0EA5E915",
-      "0 0 20px #2563EB40, 0 0 60px #2563EB15",
-      "0 0 20px #1E40AF40, 0 0 60px #1E40AF15",
-      "0 0 20px #06B6D440, 0 0 60px #06B6D415",
-      "0 0 20px #8B5CF640, 0 0 60px #8B5CF615",
+      "0 0 20px #14B8A640, 0 0 60px #14B8A615",
+      "0 0 20px #0D948840, 0 0 60px #0D948815",
+      "0 0 20px #04785740, 0 0 60px #04785715",
+      "0 0 20px #D9770640, 0 0 60px #D9770615",
+      "0 0 20px #B4530940, 0 0 60px #B4530915",
     ]
   );
 
@@ -270,7 +270,7 @@ export default function Timeline({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#0EA5E9]"
+          className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#14B8A6]"
         >
           Career Evolution
         </motion.p>
@@ -279,7 +279,7 @@ export default function Timeline({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className={`text-3xl font-bold sm:text-4xl ${isDark ? "text-white" : "text-[#1a1a1a]"}`}
+          className={`text-3xl font-bold sm:text-4xl ${isDark ? "text-[#e8e4de]" : "text-[#1a1a1a]"}`}
         >
           2026 → 2008
         </motion.h2>
@@ -287,7 +287,7 @@ export default function Timeline({
 
       <div ref={containerRef} className="relative mx-auto max-w-6xl px-6">
         {/* Static background line */}
-        <div className={`absolute left-1/2 top-0 h-full w-px -translate-x-1/2 ${isDark ? "bg-[#111]" : "bg-[#ddd]"}`} />
+        <div className={`absolute left-1/2 top-0 h-full w-px -translate-x-1/2 ${isDark ? "bg-[#1A1816]" : "bg-[#ddd]"}`} />
 
         {/* Animated glowing overlay line */}
         <motion.div

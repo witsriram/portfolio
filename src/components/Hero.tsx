@@ -31,8 +31,8 @@ export default function Hero() {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           className={`absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl ${
             isDark
-              ? "bg-[radial-gradient(circle,rgba(14,165,233,0.07)_0%,transparent_70%)]"
-              : "bg-[radial-gradient(circle,rgba(14,165,233,0.08)_0%,transparent_70%)]"
+              ? "bg-[radial-gradient(circle,rgba(20,184,166,0.07)_0%,transparent_70%)]"
+              : "bg-[radial-gradient(circle,rgba(20,184,166,0.08)_0%,transparent_70%)]"
           }`}
         />
         <motion.div
@@ -44,8 +44,8 @@ export default function Hero() {
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className={`absolute right-1/4 top-1/3 h-[400px] w-[400px] rounded-full blur-3xl ${
             isDark
-              ? "bg-[radial-gradient(circle,rgba(6,182,212,0.05)_0%,transparent_70%)]"
-              : "bg-[radial-gradient(circle,rgba(37,99,235,0.06)_0%,transparent_70%)]"
+              ? "bg-[radial-gradient(circle,rgba(217,119,6,0.04)_0%,transparent_70%)]"
+              : "bg-[radial-gradient(circle,rgba(217,119,6,0.05)_0%,transparent_70%)]"
           }`}
         />
         <motion.div
@@ -56,8 +56,8 @@ export default function Hero() {
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className={`absolute bottom-1/4 left-1/4 h-[300px] w-[300px] rounded-full blur-3xl ${
             isDark
-              ? "bg-[radial-gradient(circle,rgba(37,99,235,0.04)_0%,transparent_70%)]"
-              : "bg-[radial-gradient(circle,rgba(6,182,212,0.05)_0%,transparent_70%)]"
+              ? "bg-[radial-gradient(circle,rgba(13,148,136,0.04)_0%,transparent_70%)]"
+              : "bg-[radial-gradient(circle,rgba(13,148,136,0.05)_0%,transparent_70%)]"
           }`}
         />
       </div>
@@ -73,15 +73,15 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className={`flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium backdrop-blur-sm ${
             isDark
-              ? "border-[#1a1a1a] bg-[#0a0a0a]/80 text-[#888]"
+              ? "border-[#262420] bg-[#12110F]/80 text-[#9a9488]"
               : "border-[#ddd] bg-white/80 text-[#666] shadow-sm"
           }`}
         >
-          <Terminal size={12} className="text-[#0EA5E9]" />
+          <Terminal size={12} className="text-[#14B8A6]" />
           <span className="font-mono">
-            <span className="text-[#0EA5E9]">$</span> platform-engineer --exp 16y
+            <span className="text-[#14B8A6]">$</span> platform-engineer --exp 16y
           </span>
-          <span className="animate-pulse-glow text-[#0EA5E9]">▋</span>
+          <span className="animate-pulse-glow text-[#14B8A6]">▋</span>
         </motion.div>
 
         {/* Name */}
@@ -102,14 +102,14 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
           className={`max-w-2xl text-sm font-light leading-relaxed sm:text-base ${
-            isDark ? "text-[#888]" : "text-[#666]"
+            isDark ? "text-[#9a9488]" : "text-[#666]"
           }`}
         >
           16 years across{" "}
-          <span className={`font-medium ${isDark ? "text-white" : "text-black"}`}>IaC, Config Management, CI/CD, and Platform Engineering</span> — built a product{" "}
-          (<span className="font-medium text-[#0EA5E9]">D-Engine</span>), then scaled{" "}
-          <span className={`font-medium ${isDark ? "text-white" : "text-black"}`}>Undercloud deployments</span> across 250+ sites via{" "}
-          <span className="font-medium text-[#0EA5E9]">K8s &amp; Airship</span> for the largest telecom provider in North America.{" "}
+          <span className={`font-medium ${isDark ? "text-[#e8e4de]" : "text-black"}`}>IaC, Config Management, CI/CD, and Platform Engineering</span> — built a product{" "}
+          (<span className="font-medium text-[#14B8A6]">D-Engine</span>), then scaled{" "}
+          <span className={`font-medium ${isDark ? "text-[#e8e4de]" : "text-black"}`}>Undercloud deployments</span> across 250+ sites via{" "}
+          <span className="font-medium text-[#14B8A6]">K8s &amp; Airship</span> for the largest telecom provider in North America.{" "}
           Enterprise delivery at scale, product-builder at heart.
         </motion.p>
 
@@ -118,15 +118,15 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.65 }}
           className={`max-w-2xl text-sm font-light leading-relaxed sm:text-base ${
-            isDark ? "text-[#888]" : "text-[#666]"
+            isDark ? "text-[#9a9488]" : "text-[#666]"
           }`}
         >
           Personal lab:{" "}
-          <span className="font-medium text-[#0EA5E9]">Azure Arc</span>,{" "}
-          <span className="font-medium text-[#0EA5E9]">KAITO</span>,{" "}
-          <span className={`font-medium ${isDark ? "text-white" : "text-black"}`}>model quantization</span>, and a{" "}
+          <span className="font-medium text-[#14B8A6]">Azure Arc</span>,{" "}
+          <span className="font-medium text-[#14B8A6]">KAITO</span>,{" "}
+          <span className={`font-medium ${isDark ? "text-[#e8e4de]" : "text-black"}`}>model quantization</span>, and a{" "}
 private GPT via Ollama (linked to{" "}
-          <a href="https://gpt.witsriram.com" target="_blank" rel="noopener noreferrer" className="font-medium text-[#0EA5E9] underline underline-offset-4 decoration-[#0EA5E9]/50 hover:decoration-[#0EA5E9]">gpt.witsriram.com</a>).
+          <a href="https://gpt.witsriram.com" target="_blank" rel="noopener noreferrer" className="font-medium text-[#14B8A6] underline underline-offset-4 decoration-[#14B8A6]/50 hover:decoration-[#14B8A6]">gpt.witsriram.com</a>).
         </motion.p>
 
         {/* CTA row */}
@@ -138,7 +138,7 @@ private GPT via Ollama (linked to{" "}
         >
           <a
             href="#timeline"
-            className="group flex items-center gap-2 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10 px-6 py-2.5 text-sm font-medium text-[#0EA5E9] transition-all duration-300 hover:border-[#0EA5E9]/60 hover:bg-[#0EA5E9]/20 hover:shadow-[0_0_30px_rgba(14,165,233,0.15)]"
+            className="group flex items-center gap-2 rounded-full border border-[#14B8A6]/30 bg-[#14B8A6]/10 px-6 py-2.5 text-sm font-medium text-[#14B8A6] transition-all duration-300 hover:border-[#14B8A6]/60 hover:bg-[#14B8A6]/20 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)]"
           >
             Explore Timeline
             <ChevronDown size={14} className="transition-transform group-hover:translate-y-0.5" />
@@ -147,7 +147,7 @@ private GPT via Ollama (linked to{" "}
             href="#skills"
             className={`rounded-full border px-6 py-2.5 text-sm font-medium transition-all duration-300 ${
               isDark
-                ? "border-[#1a1a1a] bg-[#0a0a0a] text-[#ccc] hover:border-[#333] hover:text-white"
+                ? "border-[#262420] bg-[#12110F] text-[#c4bfb6] hover:border-[#332F2A] hover:text-[#e8e4de]"
                 : "border-[#ddd] bg-white text-[#666] shadow-sm hover:border-[#bbb] hover:text-black"
             }`}
           >
@@ -163,14 +163,14 @@ private GPT via Ollama (linked to{" "}
         transition={{ delay: 1.4, duration: 1 }}
         className="absolute bottom-10 flex flex-col items-center gap-2"
       >
-        <span className={`text-[10px] font-medium uppercase tracking-[3px] ${isDark ? "text-[#555]" : "text-[#aaa]"}`}>
+        <span className={`text-[10px] font-medium uppercase tracking-[3px] ${isDark ? "text-[#5c574e]" : "text-[#aaa]"}`}>
           Scroll
         </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
         >
-          <ChevronDown size={16} className={isDark ? "text-[#555]" : "text-[#aaa]"} />
+          <ChevronDown size={16} className={isDark ? "text-[#5c574e]" : "text-[#aaa]"} />
         </motion.div>
       </motion.div>
     </section>

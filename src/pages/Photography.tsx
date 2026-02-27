@@ -13,16 +13,17 @@ interface Photo {
   aspect: "landscape" | "portrait" | "square";
 }
 
-/*
- * To add photos:
- * 1. Drop images into public/photos/
- * 2. Add an entry to this array with the filename, title, location, and aspect ratio
- */
 const photos: Photo[] = [
-  // Example entries (uncomment and update when you add real photos):
-  // { id: 1, src: "/photos/mt-rainier.jpg", title: "Mt. Rainier at Sunset", location: "Washington", aspect: "landscape" },
-  // { id: 2, src: "/photos/sedona-red-rocks.jpg", title: "Sedona Red Rocks", location: "Arizona", aspect: "landscape" },
-  // { id: 3, src: "/photos/pacific-coast.jpg", title: "Pacific Coast", location: "Oregon", aspect: "portrait" },
+  { id: 1, src: "/photos/kerrypark_dec_lights_v-1.JPEG", title: "Kerry Park — December Lights", location: "Seattle, WA", aspect: "landscape" },
+  { id: 2, src: "/photos/rainer_lenticular4_girl3.JPEG", title: "Lenticular Clouds over Rainier", location: "Mt. Rainier, WA", aspect: "landscape" },
+  { id: 3, src: "/photos/northenlights-AI-1.JPEG", title: "Aurora Borealis", location: "Pacific Northwest", aspect: "portrait" },
+  { id: 4, src: "/photos/fall_lake_house-10.JPEG", title: "Autumn Reflections", location: "Lake House, WA", aspect: "landscape" },
+  { id: 5, src: "/photos/pink-moon2-1.JPEG", title: "Pink Moon Rising", location: "Washington", aspect: "portrait" },
+  { id: 6, src: "/photos/moont_11_2023_2-1-3.JPEG", title: "Rainier at Golden Hour", location: "Mt. Rainier, WA", aspect: "landscape" },
+  { id: 7, src: "/photos/ballardlove-2.JPEG", title: "Ballard Love", location: "Seattle, WA", aspect: "landscape" },
+  { id: 8, src: "/photos/rockwoodfarm-1.JPEG", title: "Rockwood Farm", location: "Washington", aspect: "landscape" },
+  { id: 9, src: "/photos/SRI_2769.JPEG", title: "Pacific Northwest Light", location: "Washington", aspect: "landscape" },
+  { id: 10, src: "/photos/IMG_6050.JPEG", title: "Golden Horizons", location: "Washington", aspect: "landscape" },
 ];
 
 export default function Photography() {
@@ -33,7 +34,7 @@ export default function Photography() {
   return (
     <div
       className={`min-h-screen font-sans transition-colors duration-500 ${
-        isDark ? "bg-void text-text-primary" : "bg-[#f5f5f7] text-[#1a1a1a]"
+        isDark ? "bg-void text-text-primary" : "bg-[#FAF8F5] text-[#1a1a1a]"
       }`}
     >
       <Header />
@@ -46,7 +47,7 @@ export default function Photography() {
           transition={{ duration: 0.6 }}
           className="mb-14 text-center"
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#0EA5E9]">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[4px] text-[#14B8A6]">
             Landscape Photography
           </p>
           <h1
@@ -58,7 +59,7 @@ export default function Photography() {
           </h1>
           <p
             className={`mt-3 text-base leading-relaxed ${
-              isDark ? "text-[#888]" : "text-[#666]"
+              isDark ? "text-[#9a9488]" : "text-[#666]"
             }`}
           >
             Landscapes, nature, and moments captured through my lens.
@@ -73,7 +74,7 @@ export default function Photography() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className={`flex flex-col items-center justify-center rounded-2xl border-2 border-dashed py-24 ${
               isDark
-                ? "border-[#1a1a1a] bg-[#0a0a0a]/40"
+                ? "border-[#262420] bg-[#12110F]/40"
                 : "border-[#ddd] bg-white/40"
             }`}
           >
@@ -93,7 +94,7 @@ export default function Photography() {
                 isDark ? "text-[#333]" : "text-[#ccc]"
               }`}
             >
-              Drop photos into <code className="font-mono text-[#0EA5E9]">public/photos/</code> and
+              Drop photos into <code className="font-mono text-[#14B8A6]">public/photos/</code> and
               add entries to the photos array in this page to build your gallery.
             </p>
           </motion.div>
@@ -113,7 +114,7 @@ export default function Photography() {
                     onClick={() => setSelectedPhoto(photo)}
                     className={`group relative w-full overflow-hidden rounded-2xl border transition-all duration-300 ${
                       isDark
-                        ? "border-[#1a1a1a] hover:border-[#2a2a2a] hover:shadow-[0_0_30px_rgba(14,165,233,0.06)]"
+                        ? "border-[#262420] hover:border-[#332F2A] hover:shadow-[0_0_30px_rgba(20,184,166,0.06)]"
                         : "border-[#e0e0e0] shadow-sm hover:border-[#ccc] hover:shadow-md"
                     }`}
                   >

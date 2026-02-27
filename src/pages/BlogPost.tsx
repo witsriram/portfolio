@@ -16,7 +16,7 @@ export default function BlogPost() {
     return (
       <div
         className={`flex min-h-screen items-center justify-center font-sans ${
-          isDark ? "bg-void text-text-primary" : "bg-[#f5f5f7] text-[#1a1a1a]"
+          isDark ? "bg-void text-text-primary" : "bg-[#FAF8F5] text-[#1a1a1a]"
         }`}
       >
         <Header />
@@ -24,7 +24,7 @@ export default function BlogPost() {
           <h1 className="mb-4 text-4xl font-bold">Post not found</h1>
           <Link
             to="/blog"
-            className="text-[#0EA5E9] underline-offset-4 hover:underline"
+            className="text-[#14B8A6] underline-offset-4 hover:underline"
           >
             Back to Blog
           </Link>
@@ -38,7 +38,7 @@ export default function BlogPost() {
   return (
     <div
       className={`min-h-screen font-sans transition-colors duration-500 ${
-        isDark ? "bg-void text-text-primary" : "bg-[#f5f5f7] text-[#1a1a1a]"
+        isDark ? "bg-void text-text-primary" : "bg-[#FAF8F5] text-[#1a1a1a]"
       }`}
     >
       <Header />
@@ -54,7 +54,7 @@ export default function BlogPost() {
             to="/blog"
             className={`mb-8 inline-flex items-center gap-2 text-sm transition-colors ${
               isDark
-                ? "text-[#555] hover:text-white"
+                ? "text-[#5c574e] hover:text-white"
                 : "text-[#aaa] hover:text-black"
             }`}
           >
@@ -81,7 +81,7 @@ export default function BlogPost() {
           <div className="mt-4 flex flex-wrap items-center gap-4">
             <span
               className={`flex items-center gap-1.5 text-xs ${
-                isDark ? "text-[#555]" : "text-[#aaa]"
+                isDark ? "text-[#5c574e]" : "text-[#aaa]"
               }`}
             >
               <Calendar size={12} />
@@ -93,7 +93,7 @@ export default function BlogPost() {
             </span>
             <span
               className={`flex items-center gap-1.5 text-xs ${
-                isDark ? "text-[#555]" : "text-[#aaa]"
+                isDark ? "text-[#5c574e]" : "text-[#aaa]"
               }`}
             >
               <Clock size={12} />
@@ -105,7 +105,7 @@ export default function BlogPost() {
                   key={tag}
                   className={`flex items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-medium ${
                     isDark
-                      ? "border-[#1a1a1a] bg-[#111] text-[#666]"
+                      ? "border-[#262420] bg-[#1A1816] text-[#5c574e]"
                       : "border-[#e0e0e0] bg-[#f0f0f0] text-[#888]"
                   }`}
                 >
@@ -118,7 +118,7 @@ export default function BlogPost() {
 
           <div
             className={`mt-6 h-px w-full ${
-              isDark ? "bg-[#1a1a1a]" : "bg-[#e0e0e0]"
+              isDark ? "bg-[#262420]" : "bg-[#e0e0e0]"
             }`}
           />
         </motion.div>
@@ -133,17 +133,17 @@ export default function BlogPost() {
           } prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
             prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
             prose-p:leading-relaxed prose-p:mb-4
-            prose-a:text-[#0EA5E9] prose-a:no-underline hover:prose-a:underline
+            prose-a:text-[#14B8A6] prose-a:no-underline hover:prose-a:underline
             prose-code:rounded prose-code:px-1.5 prose-code:py-0.5 prose-code:text-sm
             prose-pre:rounded-xl prose-pre:border
             ${
               isDark
-                ? "prose-code:bg-[#111] prose-code:text-[#e0e0e0] prose-pre:border-[#1a1a1a] prose-pre:bg-[#0a0a0a]"
+                ? "prose-code:bg-[#1A1816] prose-code:text-[#e0e0e0] prose-pre:border-[#262420] prose-pre:bg-[#12110F]"
                 : "prose-code:bg-[#f0f0f0] prose-code:text-[#333] prose-pre:border-[#e0e0e0] prose-pre:bg-[#fafafa]"
             }
-            prose-li:marker:text-[#0EA5E9]
-            prose-blockquote:border-l-[#0EA5E9] prose-blockquote:italic
-            ${isDark ? "prose-blockquote:text-[#888]" : "prose-blockquote:text-[#666]"}
+            prose-li:marker:text-[#14B8A6]
+            prose-blockquote:border-l-[#14B8A6] prose-blockquote:italic
+            ${isDark ? "prose-blockquote:text-[#9a9488]" : "prose-blockquote:text-[#666]"}
             prose-strong:font-semibold
             ${isDark ? "prose-strong:text-white" : "prose-strong:text-[#1a1a1a]"}
           `}

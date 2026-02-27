@@ -51,7 +51,7 @@ export interface CareerPhase {
 export const careerPhases: CareerPhase[] = [
   {
     id: "intelligence-era",
-    color: "#0EA5E9",
+    color: "#14B8A6",
     glowClass: "glow-purple",
     label: "The Intelligence Era",
     years: "2024 – 2026",
@@ -118,7 +118,7 @@ export const careerPhases: CareerPhase[] = [
   },
   {
     id: "fleet-commander",
-    color: "#2563EB",
+    color: "#0D9488",
     glowClass: "glow-deep-purple",
     label: "The Fleet Commander",
     years: "2021 – 2024",
@@ -203,7 +203,7 @@ export const careerPhases: CareerPhase[] = [
   },
   {
     id: "architect",
-    color: "#1E40AF",
+    color: "#047857",
     glowClass: "glow-blue",
     label: "The Platform Engineer",
     years: "2014 – 2020",
@@ -330,7 +330,7 @@ export const careerPhases: CareerPhase[] = [
   },
   {
     id: "foundation-ltm",
-    color: "#06B6D4",
+    color: "#D97706",
     glowClass: "glow-orange",
     label: "The Catalyst",
     years: "2013 – 2014",
@@ -371,7 +371,7 @@ export const careerPhases: CareerPhase[] = [
   },
   {
     id: "foundation-wipro",
-    color: "#06B6D4",
+    color: "#D97706",
     glowClass: "glow-orange",
     label: "The Foundation",
     years: "2010 – 2013",
@@ -418,7 +418,7 @@ export const careerPhases: CareerPhase[] = [
   },
   {
     id: "genesis",
-    color: "#8B5CF6",
+    color: "#B45309",
     glowClass: "glow-purple",
     label: "The Genesis",
     years: "2008 – 2009",
@@ -477,55 +477,55 @@ export const techMatrix: TechCategory[] = [
   {
     category: "Languages",
     icon: Code2,
-    color: "#0EA5E9",
+    color: "#14B8A6",
     items: ["GoLang", "Python", "PHP", "Ruby", "C#", "C++", "Bash", "PowerShell"],
   },
   {
     category: "Orchestration",
     icon: Container,
-    color: "#2563EB",
+    color: "#0D9488",
     items: ["Kubernetes", "Docker", "Airship", "OpenStack", "Terraform", "Helm"],
   },
   {
     category: "AI / ML",
     icon: Brain,
-    color: "#0EA5E9",
+    color: "#14B8A6",
     items: ["GPT-4", "Llama 3.X", "Phi 3.5", "RAG", "Vector DBs"],
   },
   {
     category: "Cloud",
     icon: Cloud,
-    color: "#1E40AF",
+    color: "#047857",
     items: ["Azure", "AWS", "M365 Service Infra", "Azure Arc"],
   },
   {
     category: "SRE & Observability",
     icon: BarChart3,
-    color: "#06B6D4",
+    color: "#D97706",
     items: ["DataDog", "Splunk", "Nagios", "Kibana", "ThousandEyes", "Akamai", "Geneva"],
   },
   {
     category: "Infrastructure",
     icon: Network,
-    color: "#1E40AF",
+    color: "#047857",
     items: ["Ceph", "Calico", "Nginx", "IIS", "Active Directory"],
   },
   {
     category: "CI/CD & DevOps",
     icon: Workflow,
-    color: "#0EA5E9",
+    color: "#14B8A6",
     items: ["Jenkins", "Pipeline as Code", "Azure DevOps Pipelines", "GitHub Actions", "ArgoCD"],
   },
   {
     category: "Configuration Management",
     icon: Settings,
-    color: "#06B6D4",
+    color: "#D97706",
     items: ["Chef", "Ansible", "Custom Cookbooks", "Knife Plugins", "Ansible Playbooks"],
   },
   {
     category: "Source Control & GitOps",
     icon: GitBranch,
-    color: "#2563EB",
+    color: "#0D9488",
     items: ["Git", "GitHub", "Azure Repos", "GitOps", "Flux", "Gerrit"],
   },
 ];

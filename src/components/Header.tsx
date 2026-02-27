@@ -21,7 +21,7 @@ export default function Header() {
       transition={{ duration: 0.5, delay: 0.1 }}
       className={`fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-xl transition-colors duration-300 ${
         isDark
-          ? "border-white/[0.04] bg-[#020202]/70"
+          ? "border-[#262420]/40 bg-[#0D0C0A]/70"
           : "border-black/[0.06] bg-white/70"
       }`}
     >
@@ -34,7 +34,7 @@ export default function Header() {
           }`}
         >
           {"<"}
-          <span className="text-[#0EA5E9]">SR</span>
+          <span className="text-[#14B8A6]">SR</span>
           {" />"}
         </a>
 
@@ -82,7 +82,7 @@ export default function Header() {
             transition={{ type: "spring", stiffness: 300, damping: 15 }}
             className={`ml-2 flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${
               isDark
-                ? "border-[#1a1a1a] bg-[#0a0a0a] text-yellow-400 hover:border-yellow-400/30 hover:shadow-[0_0_15px_rgba(250,204,21,0.1)]"
+                ? "border-[#262420] bg-[#12110F] text-yellow-400 hover:border-yellow-400/30 hover:shadow-[0_0_15px_rgba(250,204,21,0.1)]"
                 : "border-[#ddd] bg-white text-indigo-600 hover:border-indigo-400/30 hover:shadow-[0_0_15px_rgba(99,102,241,0.1)]"
             }`}
             aria-label="Toggle theme"
@@ -148,7 +148,7 @@ function HobbiesDropdown({ isDark }: { isDark: boolean }) {
             transition={{ duration: 0.15 }}
             className={`absolute right-0 top-full mt-1.5 w-44 overflow-hidden rounded-xl border shadow-xl backdrop-blur-xl ${
               isDark
-                ? "border-[#1a1a1a] bg-[#0a0a0a]/95"
+                ? "border-[#262420] bg-[#12110F]/95"
                 : "border-[#e0e0e0] bg-white/95"
             }`}
           >
@@ -163,7 +163,7 @@ function HobbiesDropdown({ isDark }: { isDark: boolean }) {
                     : "text-[#666] hover:bg-black/[0.03] hover:text-black"
                 }`}
               >
-                <Icon size={14} className="text-[#0EA5E9]" />
+                <Icon size={14} className="text-[#14B8A6]" />
                 {label}
               </Link>
             ))}
