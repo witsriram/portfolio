@@ -5,8 +5,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Timeline from "./components/Timeline";
 import BentoGrid from "./components/BentoGrid";
-import TechRadar from "./components/TechRadar";
-import StatsCounter from "./components/StatsCounter";
+import Showcase from "./components/Showcase";
 
 import SlideOut from "./components/SlideOut";
 import Passions from "./components/Passions";
@@ -28,10 +27,9 @@ function Home() {
       <ParticleField />
       <Header />
       <Hero />
-      <StatsCounter />
+      <Showcase />
       <Timeline phases={careerPhases} onSelectPhase={setSelectedPhase} />
       <BentoGrid techMatrix={techMatrix} />
-      <TechRadar />
       <Passions />
 
       <Footer />

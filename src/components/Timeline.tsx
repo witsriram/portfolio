@@ -153,24 +153,24 @@ function TimelineCard({
           </div>
           <div>
             <p
-              className="text-xs font-semibold uppercase tracking-wider"
+              className="text-sm font-semibold uppercase tracking-wider"
               style={{ color: phase.color }}
             >
               {phase.label}
             </p>
-            <p className="font-mono text-[11px] text-[#5c574e]">{phase.years}</p>
+            <p className="font-mono text-xs text-[#5c574e]">{phase.years}</p>
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="mb-0.5 text-xs font-bold text-[#e8e4de]/90">
+        <h3 className="mb-0.5 text-sm font-bold text-[#e8e4de]/90">
           {phase.title}
         </h3>
 
         {/* Project count + Client names */}
         <div className="mb-1 flex flex-wrap items-center gap-1.5">
           <span
-            className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 font-mono text-[10px] font-semibold"
+            className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 font-mono text-[11px] font-semibold"
             style={{ backgroundColor: phase.color + '15', color: phase.color }}
           >
             {phase.subProjects.length} {phase.subProjects.length === 1 ? 'Project' : 'Projects'}
@@ -178,7 +178,7 @@ function TimelineCard({
           {phase.clients.map((client) => (
             <span
               key={client}
-              className="rounded-md px-1.5 py-0.5 text-[10px] font-medium bg-[#1A1816] text-[#9a9488]"
+              className="rounded-md px-1.5 py-0.5 text-[11px] font-medium bg-[#1A1816] text-[#9a9488]"
             >
               {client}
             </span>
@@ -186,7 +186,7 @@ function TimelineCard({
         </div>
 
         {/* Impact */}
-        <p className="text-[11px] leading-snug text-[#6b665c]">{phase.impact}</p>
+        <p className="text-xs leading-snug text-[#6b665c]">{phase.impact}</p>
 
         {/* Expand hint */}
         <div

@@ -148,10 +148,10 @@ export default function SlideOut({
 
           <motion.div
             layoutId={`card-${phase.id}`}
-            className="slide-out-scroll fixed right-0 top-0 z-50 flex h-full w-full flex-col overflow-y-auto border-l backdrop-blur-xl sm:w-[520px] lg:w-[600px] border-[#262420] bg-[#0D0C0A]/95"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            className="slide-out-scroll fixed inset-0 z-50 m-auto flex h-[90vh] w-[95vw] max-w-[720px] flex-col overflow-y-auto rounded-2xl border backdrop-blur-xl border-[#262420] bg-[#0D0C0A]/95"
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 30 }}
             transition={{
               type: "spring",
               stiffness: 300,
