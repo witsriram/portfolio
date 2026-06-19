@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ChevronDown, Terminal } from "lucide-react";
+import { ChevronDown, Terminal, FileText } from "lucide-react";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -102,9 +102,11 @@ export default function Hero() {
         >
           I turn infrastructure into code and complexity into platforms.{" "}
           Over <span className="font-medium text-white">16 years</span>, I&apos;ve{" "}
-          built <span className="font-medium text-[#5EEAD4]">D-Engine</span> — an internal IP that abstracts multi-cloud provisioning — and{" "}
-          shipped <span className="font-medium text-white">Undercloud at scale</span>: 250+ sites,{" "}
-          <span className="font-medium text-[#5EEAD4]">Kubernetes &amp; Airship</span>, powering North America&apos;s largest telecom network.{" "}
+          built <span className="font-medium text-[#5EEAD4]">D-Engine</span> — an internal IP that abstracts multi-cloud provisioning — shipped{" "}
+          <span className="font-medium text-[#5EEAD4]">Terraform</span>-driven, zero-touch Azure platforms, and run{" "}
+          <span className="font-medium text-white">Undercloud at scale</span>: 250+{" "}
+          <span className="font-medium text-[#5EEAD4]">Kubernetes</span> sites with Airship — plus{" "}
+          <span className="font-medium text-[#5EEAD4]">SRE</span> on-call ownership against strict availability SLAs.{" "}
           Product-builder by instinct, platform engineer by trade.
         </motion.p>
 
@@ -141,7 +143,29 @@ export default function Hero() {
           >
             Tech Stack
           </a>
+          <a
+            href="/Profile.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-full border px-6 py-2.5 text-sm font-medium transition-all duration-300 border-[#262420] bg-[#12110F] text-[#c4bfb6] hover:border-[#332F2A] hover:text-[#e8e4de]"
+          >
+            <FileText size={14} /> Résumé
+          </a>
         </motion.div>
+
+        {/* Open-to status */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.85 }}
+          className="mt-1 flex items-center gap-2 font-mono text-xs text-[#9a9488]"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#14B8A6] opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#14B8A6]" />
+          </span>
+          Open to Cloud Platform · IaC · SRE roles
+        </motion.p>
       </motion.div>
     </section>
   );

@@ -475,6 +475,12 @@ export interface TechCategory {
 
 export const techMatrix: TechCategory[] = [
   {
+    category: "Infrastructure as Code",
+    icon: Layers,
+    color: "#14B8A6",
+    items: ["Terraform", "D-Engine (Multi-Cloud IaC)", "Helm", "Declarative YAML", "Immutable Provisioning", "Modular Modules"],
+  },
+  {
     category: "Languages",
     icon: Code2,
     color: "#14B8A6",
@@ -514,7 +520,7 @@ export const techMatrix: TechCategory[] = [
     category: "CI/CD & DevOps",
     icon: Workflow,
     color: "#14B8A6",
-    items: ["Jenkins", "Pipeline as Code", "Azure DevOps Pipelines", "GitHub Actions", "ArgoCD"],
+    items: ["Jenkins", "Pipeline as Code", "Azure DevOps Pipelines", "GitHub Actions", "GitHub Copilot", "ArgoCD"],
   },
   {
     category: "Configuration Management",
@@ -593,7 +599,7 @@ export const bentoHighlights: BentoItem[] = [
   {
     title: "SRE Toolchain",
     value: "Full-Stack Observability",
-    subtitle: "DataDog, Splunk, Geneva",
+    subtitle: "SLA-driven · DataDog, Splunk, Geneva",
     icon: Shield,
     color: "#06B6D4",
     span: "wide",

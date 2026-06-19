@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Mail, PenLine, Heart, ChevronDown, Footprints, Camera } from "lucide-react";
+import { Github, Linkedin, Mail, PenLine, Heart, ChevronDown, Footprints, Camera, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 const links = [
+  { icon: FileText, href: "/Profile.pdf", label: "Résumé", external: true },
   { icon: Mail, href: "mailto:sri@witsriram.com", label: "sri@witsriram.com" },
   { icon: Github, href: "https://github.com/witsriram", label: "GitHub", external: true },
   { icon: Linkedin, href: "https://linkedin.com/in/witsriram", label: "LinkedIn", external: true },
