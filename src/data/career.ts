@@ -50,11 +50,108 @@ export interface CareerPhase {
 
 export const careerPhases: CareerPhase[] = [
   {
+    id: "commerce-platform",
+    color: "#2DD4BF",
+    glowClass: "glow-purple",
+    label: "The Commerce Platform Era",
+    years: "2026 – Present",
+    title: "Senior Platform & DevOps Engineer",
+    project: "Azure Commerce Platform — Deployment & Identity Engineering",
+    impact:
+      "Retrofitting region-agnostic Key Vault, certificate, and identity workflows for a global Azure Commerce platform across sovereign clouds — diagnosed entirely through service models and deployment logs with zero portal access.",
+    techSpecs: [
+      "Azure EV2 (Express v2)",
+      "Service Resource Definitions",
+      "Key Vault & Certificates",
+      "RBAC (Data-plane & Control-plane)",
+      "Managed Identity / UAMI",
+      "Cross-Tenant Entra ID Auth",
+      "Service Principals",
+      "Azure DevOps",
+      "PowerShell",
+    ],
+    icon: Shield,
+    company: "LTIMindtree Limited",
+    clients: ["Microsoft"],
+    subProjects: [
+      {
+        name: "EV2 Region-Agnostic Key Vault / Certificate Retrofit",
+        period: "Jan 2026 – Present",
+        technologies: [
+          "Azure EV2",
+          "Service Resource Definitions",
+          "Key Vault",
+          "Certificates",
+          "Managed Identity",
+          "RBAC",
+        ],
+        infrastructure: "Azure EV2 across Public & Sovereign Clouds",
+        highlights: [
+          "Diagnosed complex deployment failures entirely 'blind' — no portal or JIT access to sovereign clouds — by reading EV2 service models, rollout specs, resolved bindings, and deployment logs.",
+          "Reasoned through advanced EV2 constructs: Service Resource Definition outputs, deploy-action binding chains, execution-constraint region scoping, stage maps, and config-driven region looping.",
+          "Root-caused a multi-region RBAC failure where a role-assignment looped over both regions while the managed identity existed in only one — refactored RBAC into a dedicated, region-pinned resource, turning a hard failure into a legitimate System Skip.",
+        ],
+      },
+      {
+        name: "Assisted Identity → Legacy Buildout Revert",
+        period: "2026",
+        technologies: ["Entra ID", "Key Vault RBAC", "Certificates", "EV2 Config"],
+        infrastructure: "Azure EV2 / Entra ID",
+        highlights: [
+          "Traced AAD token-acquisition failures (missing app-id configuration) through the binding-resolution layer.",
+          "Determined a retrofit scenario could not obtain the required Key Vault RBAC grants (Secrets User + Certificates Officer), then re-pointed certificate workflows to the legacy buildout application via config-only changes.",
+          "Surfaced the subtle blast radius of vault-scoped RBAC — a follow-on authorization failure caused by Owner rights existing on the original vault but not a newly introduced one.",
+        ],
+      },
+      {
+        name: "Shell Extension for RBAC (Approval-Light Pattern)",
+        period: "2026",
+        technologies: [
+          "EV2 Shell Extension",
+          "UAMI",
+          "User Access Administrator",
+          "PowerShell",
+        ],
+        infrastructure: "Azure EV2 / Sovereign Clouds",
+        highlights: [
+          "Designed a pattern: an ARM resource grants the role, then a wait, then a shell step performs the privileged action under the deployment identity.",
+          "Pre-provisioned a dedicated User-Assigned Managed Identity with scoped User Access Administrator so automation could assign Key Vault data-plane RBAC without manual approvals in restricted clouds.",
+          "Adapted an existing certificate-deployment script and rollout-parameter pattern, resolving EV2 packaging conflicts across overlapping scopes.",
+          "Refactored shared logic into a Common module so multiple value streams consume a single extension.",
+        ],
+      },
+      {
+        name: "EV2-Native Key Vault & Certificate Validation",
+        period: "2026",
+        technologies: ["EV2 Validation", "Service Model", "Rollout Spec"],
+        infrastructure: "Azure EV2",
+        highlights: [
+          "Implemented Key Vault existence and certificate validation as EV2-native validation (service model + rollout spec) instead of code-based checks — standardizing the pattern across value streams.",
+        ],
+      },
+      {
+        name: "Cross-Tenant Service Principal / Pipeline Auth",
+        period: "2026",
+        technologies: [
+          "Entra ID",
+          "Service Principals",
+          "Admin Consent",
+          "Azure DevOps",
+        ],
+        infrastructure: "Multi-Tenant Entra ID (Corp / Partner / First-Party)",
+        highlights: [
+          "Resolved cross-tenant auth failures ('client application is missing a service principal in tenant') by generating the correct admin-consent flow to provision the SP for a first-party-registered app.",
+          "Analyzed cross-tenant token flow across issuer tenants for an Azure DevOps pipeline client, and validated that User Access Administrator is sufficient to grant a service principal RBAC on a Key Vault.",
+        ],
+      },
+    ],
+  },
+  {
     id: "intelligence-era",
     color: "#14B8A6",
     glowClass: "glow-purple",
     label: "The Intelligence Era",
-    years: "2024 – 2026",
+    years: "2024 – 2025",
     title: "Principal Platform Engineer & DevOps",
     project: "M365 Service Engineering & AI Transformation",
     impact:
@@ -79,7 +176,7 @@ export const careerPhases: CareerPhase[] = [
     subProjects: [
       {
         name: "M365 Service Engineering & WordPress Migration",
-        period: "Dec 2024 – Present",
+        period: "Dec 2024 – Dec 2025",
         technologies: [
           "Azure Front Door & CDN",
           "Kubernetes Service",
