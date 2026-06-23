@@ -104,7 +104,7 @@ export default function Hero() {
           Over <span className="font-medium text-white">16 years</span>, I&apos;ve{" "}
           built <span className="font-medium text-[#5EEAD4]">D-Engine</span> — an internal IP that abstracts multi-cloud provisioning — shipped{" "}
           <span className="font-medium text-[#5EEAD4]">Terraform</span>-driven, zero-touch Azure platforms, and run{" "}
-          <span className="font-medium text-white">Undercloud at scale</span>: 250+{" "}
+          <span className="font-medium text-white">Undercloud at scale</span>: 60+ greenfield &amp; 250+ brownfield{" "}
           <span className="font-medium text-[#5EEAD4]">Kubernetes</span> sites with Airship — plus{" "}
           <span className="font-medium text-[#5EEAD4]">SRE</span> on-call ownership against strict availability SLAs.{" "}
           Product-builder by instinct, platform engineer by trade.

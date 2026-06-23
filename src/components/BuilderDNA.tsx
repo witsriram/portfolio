@@ -28,8 +28,8 @@ const builderCards = [
   {
     icon: Server,
     title: "Undercloud at Scale",
-    desc: "Deployed 250+ bare-metal sites with Airship & Kubernetes for North America's largest telecom undercloud.",
-    tag: "AT&T · 2021",
+    desc: "Delivered 60+ greenfield builds & 250+ brownfield upgrades on bare-metal with Airship & Kubernetes — concurrent release trains 2.6→2.12.",
+    tag: "Telecom Undercloud · 2020–24",
     color: "#0EA5E9",
   },
   {
