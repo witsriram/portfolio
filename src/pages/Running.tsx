@@ -253,7 +253,7 @@ export default function Running() {
         >
           <Footprints size={24} className="mx-auto mb-3 text-[#14B8A6]" />
           <p className="text-sm leading-relaxed text-[#9a9488]">
-            2,000 km and counting. Every mile is a reminder that consistency beats intensity —
+            2,255 miles and counting. Every mile is a reminder that consistency beats intensity —
             in running and in engineering.
           </p>
         </motion.div>
